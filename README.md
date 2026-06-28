@@ -1,2 +1,7 @@
 # VibeProjects
-A collection of vibe projects
+
+A GitHub repo for a collection of Vibe projects.
+
+## Projects
+
+- **ChillFlow** — thermal simulation and visualization
