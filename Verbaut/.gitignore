@@ -1,0 +1,21 @@
+# Verbaut — .gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Data caches (OSM downloads — regenerate via scripts)
+data/*.gpkg
+cache/*.json
+
+# Output videos, frames, reports
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.venv/
+.env
