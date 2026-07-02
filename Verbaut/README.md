@@ -57,13 +57,14 @@ python verbaut_boeheimkirchen.py --zoom-km 2.4 --grid 4   # village core close-u
 ```
 
 Output: `output/shorts/verbaut_boeheimkirchen_70yrs.mp4` (full) and
-`output/shorts/verbaut_boeheimkirchen_core_70yrs.mp4` (core close-up)
+`output/shorts/verbaut_boeheimkirchen_core_70yrs.mp4` (core close-up),
+each **~9 seconds** (intro 1.5 s → one year per ~0.08 s → outro 2 s)
 
 `--zoom-km` sets the view width in km around the village centre (the map
 zooms; the km²/% stats still cover the whole municipality). Use a finer
 `--grid` when zoomed so individual houses render crisply.
 
-- **32 seconds**, 9:16 vertical
+- **~9 seconds**, 9:16 vertical
 - **72 frames** (1955 → 2026)
 - Shows Böheimkirchen's building area growing from **0.20 km² → 0.73 km²** (0.44 % → 1.60 % of the 45.5 km² municipality)
 - **Building geometry from the cadastre**: the animated buildings are the surveyed *Gebäude* Nutzungsflächen (NS 41) of the **Digitale Katastralmappe (DKM)** — the geometric counterpart of the Grundbuch — fetched per Katastralgemeinde (all 21 KGs of the municipality) from the BEV Niederösterreich snapshot via HTTP range requests (a few MB instead of the 3.3 GB state file). Kataster © BEV, CC BY 4.0, Stichtag 2026-04-01.

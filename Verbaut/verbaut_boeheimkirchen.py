@@ -763,10 +763,11 @@ def main():
             for fi in range(len(frames)):
                 if fi > 0:
                     im.set_data(mpimg.imread(frames[fi]))
-                # pacing: hold first frame 4s, last 5s, others ~0.3s
-                reps = (args.fps * 4 if fi == 0
-                        else args.fps * 5 if fi == len(frames) - 1
-                        else max(1, args.fps // 3))
+                # pacing: hold first frame 1.5s, last 2s, others ~0.08s
+                # (~9.3s total at 24 fps)
+                reps = (int(args.fps * 1.5) if fi == 0
+                        else args.fps * 2 if fi == len(frames) - 1
+                        else max(1, args.fps // 9))
                 for _ in range(reps):
                     writer.grab_frame(); tf += 1
                 if (fi + 1) % 20 == 0 or fi == len(frames) - 1:
