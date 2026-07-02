@@ -8,6 +8,9 @@
 
 ```
 Verbaut/
+├── verbaut_wien.py           ← Vienna 1800–2026 Short (9:16, per-district GWR model,
+│                                archival 1829/1904 calibration)
+├── historical_calibration.py ← 1829 Kataster + 1904 Generalstadtplan overlay flags
 ├── verbaut_short.py          ← YouTube Short generator (9:16, 1955–2026, ~30s)
 ├── verbaut_boeheimkirchen.py ← Böheimkirchen rural-village Short (9:16, 1955–2026)
 ├── verbaut_animation.py      ← Landscape animation (16:9, 2008–2026)
@@ -16,20 +19,23 @@ Verbaut/
 ├── .gitignore
 ├── LICENSE
 ├── data/                     ← Cached data (*.gpkg: DKM Nutzungsflächen,
-│   │                            OSM roads/railways for cartography)
+│   │                            Franziszeischer Kataster 1829, calibration flags,
+│   │                            OSM districts/roads/railways/water)
 │   └── gwr/                  ← Statistik Austria GWR Bauperiode CSV
-├── cache/                    ← Overpass API response cache
+├── cache/                    ← Overpass cache · Generalstadtplan 1904 WMS tiles
 └── output/                   ← Generated videos, frames, reports
     ├── verbaut_vienna_10fps.mp4       ← Landscape animation
     ├── verbaut_growth.png             ← Growth chart
     ├── verbaut_report.json            ← Per-year statistics
     ├── frames/                        ← Individual frames
     └── shorts/                        ← YouTube Short output
-        ├── verbaut_wien_70yrs.mp4     ← Vienna Short (9:16, 32s)
+        ├── verbaut_wien_core_226yrs.mp4           ← Vienna 1800–2026, inside the Gürtel
+        ├── verbaut_wien_226yrs.mp4                ← Vienna 1800–2026, full city
+        ├── verbaut_wien_70yrs.mp4     ← Vienna Short (9:16, 32s, legacy OSM model)
         ├── verbaut_boeheimkirchen_70yrs.mp4       ← full municipality
         ├── verbaut_boeheimkirchen_core_70yrs.mp4  ← village-core close-up
-        ├── frames/  frames_bhmk/  frames_bhmk_core/
-        └── short_report.json  bhmk_report.json  bhmk_core_report.json
+        ├── frames_wien/  frames_wien_core/  frames_bhmk/  frames_bhmk_core/
+        └── wien_report.json  wien_core_report.json  bhmk_report.json  …
 ```
 
 ---
@@ -46,6 +52,87 @@ Output: `output/shorts/verbaut_wien_70yrs.mp4`
 - **72 frames** (1955 → 2026)
 - Shows Vienna's building footprint growing from **34.7 km² → 58.1 km²**
 - Dark green background, red built-up overlay
+
+---
+
+## 🏙 Vienna Demo — 226 Years of a City (1800–2026)
+
+<p align="center">
+  <img src="assets/verbaut_wien_core.gif" width="300" alt="226 years of building growth in Vienna, inside the Gürtel (BEV Kataster + archival calibration)" />
+</p>
+
+▶ Videos: [inside the Gürtel](assets/verbaut_wien_core_226yrs.mp4) · [full city](assets/verbaut_wien_226yrs.mp4) · [final frame](assets/verbaut_wien_core_2026.png)
+
+```
+python verbaut_wien.py                      # full city (10 m grid)
+python verbaut_wien.py --zoom-km 6 --grid 6 # inside the Gürtel
+python historical_calibration.py            # optional: 1829/1904 archival anchors
+```
+
+Watching Vienna grow from Biedermeier town to Gründerzeit metropolis to
+today — one frame per year, 1800 → 2026. Same cadastral geometry as the
+Böheimkirchen demo (BEV DKM, all 89 Wiener Katastralgemeinden, ~209 000
+building footprints), but the growth model needed three upgrades for a
+city and a 226-year clock:
+
+- **Per-district growth curves.** Statistik Austria's GWR lists Vienna as
+  its 23 districts, each with its own Bauperiode distribution. Buildings
+  are spatially joined to their Bezirk (OSM admin_level 9) and sampled
+  against *that district's* curve — the historic core fills in first,
+  trans-Danube Donaustadt last, as actually happened (share of today's
+  stock standing 1918: Innere Stadt 75 %, Ottakring 31 %, Donaustadt 3 %).
+- **Pre-1919 timing from historical population.** The GWR's earliest
+  period is just "vor 1919". To start the clock in 1800 the pre-1919
+  stock is distributed across 1800–1918 proportionally to Vienna's
+  documented population (≈272 000 in 1800 → 2 083 630 at the 1910
+  census, today's boundaries) — so the Gründerzeit boom of 1850–1914 is
+  visible instead of a 120-year linear smear.
+- **Archival calibration (1829 & 1904).** `historical_calibration.py`
+  anchors the model to two monarchy-era sources published by the City of
+  Vienna (CC BY 4.0): the **Franziszeischer Kataster 1829** — vectorised
+  by Stadtarchäologie Wien (WFS `FRANZKATOGD`, ~28 000 building polygons
+  classed Stein/Holz/Kirche/Militär/öffentlich) and overlaid directly on
+  the DKM footprints (same EPSG:31256 frame) — and the
+  **Generalstadtplan 1904** (WMS `GENLPLAN1904OGD`), tested per footprint
+  via its interior dark-pixel fraction on 1 m/px tiles. Each building
+  gets a *measured year bracket* (standing 1829 → [1800–1829], appeared
+  → [1830–1904], absent 1904 → [1905–…], off-sheet → unconstrained) and
+  the GWR curve is only sampled *within* that bracket. Result:
+  **11 365 sites already standing in 1829, 57 164 by 1904** — the 1904
+  figure exceeds the GWR's surviving pre-1919 stock (~38 000), i.e. the
+  archival anchors also recover sites whose buildings were later
+  replaced. QA: 1829-confirmed buildings read a median dark-fraction of
+  0.32 on the 1904 plan (threshold 0.12) — the two independent sources
+  agree.
+
+**Semantics:** with calibration, red before ~1905 means "this *site* was
+built by then" — a Gründerzeit replacement of an 1829 house counts as
+1829. For a built-up-*area* animation this is more truthful than
+surviving-building age. The DKM geometry itself is a present-day
+snapshot: demolished-and-never-rebuilt structures (Glacis, Linienwall)
+never appear.
+
+| Year | Building footprint | Built-up ratio | Sites |
+|------|-------------------|----------------|-------|
+| **1800** | 3.8 km² | 0.9 % | 8 625 |
+| **1850** | 7.5 km² | 1.8 % | 18 095 |
+| **1890** | 18.5 km² | 4.5 % | 49 116 |
+| **1910** | 25.0 km² | 6.0 % | 67 646 |
+| **1960** | 33.4 km² | 8.1 % | 110 087 |
+| **1990** | 44.4 km² | 10.7 % | 163 164 |
+| **2026** | 53.5 km² | 12.9 % | 209 396 |
+
+Today 27.3 % of Vienna is sealed (buildings + the DKM's measured
+road/rail/parking/paved parcels, shown as a light-grey constant layer).
+Rendering notes: footprints are burned onto the raster with `rasterio`
+(earliest year wins per cell — centroid binning turns city blocks into
+confetti), the Donau/Donaukanal are drawn as a static water layer, and
+the zoomed cut labels the inner districts.
+
+Data: Kataster/DKM © BEV (CC BY 4.0) · GWR © Statistik Austria ·
+Franziszeischer Kataster & Generalstadtplan © Stadt Wien
+(data.wien.gv.at, CC BY 4.0) · districts/roads/water © OpenStreetMap
+contributors (ODbL)
 
 ---
 
@@ -152,7 +239,7 @@ The original sealed-surface estimator analyzes **all sealed surfaces** (building
 ## 📋 Requirements
 
 ```bash
-pip install osmnx geopandas matplotlib numpy shapely requests pillow
+pip install osmnx geopandas matplotlib numpy shapely requests pillow rasterio
 ```
 
 For video compilation: `ffmpeg` must be available on your PATH.
@@ -165,7 +252,7 @@ OSMnx downloads data from the OpenStreetMap Overpass API — an internet connect
 
 - **Building footprints only** (Vienna short & landscape animation): those animations show building coverage (14 % of Vienna), not total sealed surface (46.8 %, which includes roads, parking, etc.). The Böheimkirchen short additionally shows a grey sealed-surface layer, but as a **present-day constant** — road/parking growth over time is not animated because no historical geometry source exists for it.
 - **Cadastral "sealed" is a use classification, not a pavement survey**: the DKM Nutzungsflächen classify parcels by *use*. Straßenverkehrsanlagen parcels include some gravel rural lanes (overstating sealing), while the excluded Betriebsflächen (0.63 km²) are partly paved (understating it). The 5.9 % is the cadastral *Bau- und Verkehrsfläche* share — the best available measured proxy for soil sealing at municipal scale, sitting between the OSM lower bound (2.9 %) and land-take totals.
-- **Year assignment**: Individual building ages are unknown — years are statistically sampled to match the aggregate growth curve. The growth pattern looks realistic but individual buildings may be misdated.
+- **Year assignment**: Individual building ages are unknown — years are statistically sampled to match the aggregate growth curve (per district for Vienna). The growth pattern looks realistic but individual buildings may be misdated. The Vienna 1829/1904 calibration pins each footprint to a *measured* bracket, but the exact year within the bracket is still sampled; pre-census population figures (1800/1830/1850) are estimates.
 - **OSM completeness**: OSM building coverage in Austria is excellent (>95 % for urban areas), but small structures (sheds, garden huts) may be over-represented.
 - **Raster resolution**: grid cells (12 m Vienna, 8 m Böheimkirchen) mean very small buildings (<~50 m²) may not be individually visible; the Böheimkirchen renderer dilates built cells by one cell for visibility, so red pixels slightly overstate footprint extent (the km²/% numbers are computed from the true polygon areas, not the pixels).
 
