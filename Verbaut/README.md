@@ -97,13 +97,16 @@ city and a 226-year clock:
   via its interior dark-pixel fraction on 1 m/px tiles. Each building
   gets a *measured year bracket* (standing 1829 → [1800–1829], appeared
   → [1830–1904], absent 1904 → [1905–…], off-sheet → unconstrained) and
-  the GWR curve is only sampled *within* that bracket. Result:
-  **11 365 sites already standing in 1829, 57 164 by 1904** — the 1904
-  figure exceeds the GWR's surviving pre-1919 stock (~38 000), i.e. the
-  archival anchors also recover sites whose buildings were later
-  replaced. QA: 1829-confirmed buildings read a median dark-fraction of
-  0.32 on the 1904 plan (threshold 0.12) — the two independent sources
-  agree.
+  the GWR curve is only sampled *within* that bracket. The 1829 test is
+  scale-aware: ≥ 30 % relative overlap **or** ≥ 400 m² absolute overlap
+  — a relative threshold alone misdates large courtyard complexes (the
+  old AKH's wings dilute to 20 % even over 3 000 m² of 1829 masonry).
+  Result: **11 513 sites already standing in 1829, 57 164 by 1904** —
+  the 1904 figure exceeds the GWR's surviving pre-1919 stock (~38 000),
+  i.e. the archival anchors also recover sites whose buildings were
+  later replaced. QA: 1829-confirmed buildings read a median
+  dark-fraction of 0.32 on the 1904 plan (threshold 0.12) — the two
+  independent sources agree.
 
 **Semantics:** with calibration, red before ~1905 means "this *site* was
 built by then" — a Gründerzeit replacement of an 1829 house counts as
@@ -114,12 +117,12 @@ never appear.
 
 | Year | Building footprint | Built-up ratio | Sites |
 |------|-------------------|----------------|-------|
-| **1800** | 3.8 km² | 0.9 % | 8 625 |
-| **1850** | 7.5 km² | 1.8 % | 18 095 |
-| **1890** | 18.5 km² | 4.5 % | 49 116 |
-| **1910** | 25.0 km² | 6.0 % | 67 646 |
-| **1960** | 33.4 km² | 8.1 % | 110 087 |
-| **1990** | 44.4 km² | 10.7 % | 163 164 |
+| **1800** | 4.2 km² | 1.0 % | 8 729 |
+| **1850** | 8.2 km² | 2.0 % | 18 228 |
+| **1890** | 19.1 km² | 4.6 % | 49 193 |
+| **1910** | 25.2 km² | 6.1 % | 67 692 |
+| **1960** | 33.6 km² | 8.1 % | 110 122 |
+| **1990** | 44.2 km² | 10.7 % | 163 174 |
 | **2026** | 53.5 km² | 12.9 % | 209 396 |
 
 Today 27.3 % of Vienna is sealed (buildings + the DKM's measured

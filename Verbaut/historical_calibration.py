@@ -68,7 +68,11 @@ WMS_URL = ("https://data.wien.gv.at/daten/wms?service=WMS&version=1.1.1"
 # Franziszeischer Kataster TYP values that are buildings
 BUILDING_TYPS = ["Stein", "Holz", "Kirche", "Militaer", "Oefftl"]
 
-FRAC_1829 = 0.30    # min. area overlap with an 1829 building polygon
+FRAC_1829 = 0.30    # min. relative overlap with an 1829 building polygon
+ABS_1829 = 400.0    # …or this much absolute overlap (m²): a relative
+                    # threshold alone discriminates against large courtyard
+                    # complexes (AKH, barracks, palaces) whose wings dilute
+                    # to <30 % even over thousands of m² of 1829 masonry
 DARK_1904 = 0.12    # min. interior dark-pixel fraction on the 1904 plan
 TILE_M = 1000       # WMS tile edge (m) at 1 m/px
 BLANK_TILE = 0.002  # tile dark share below this = off-sheet (no coverage)
@@ -101,8 +105,8 @@ def load_franzkat() -> gpd.GeoDataFrame:
     return fk
 
 
-def overlay_1829(bld: gpd.GeoDataFrame) -> np.ndarray:
-    """Fraction of each footprint's area covered by 1829 buildings."""
+def overlay_1829(bld: gpd.GeoDataFrame) -> tuple[np.ndarray, np.ndarray]:
+    """Per footprint: (relative, absolute m²) overlap with 1829 buildings."""
     import shapely
     fk = load_franzkat()
     fkb = fk[fk["TYP"].isin(BUILDING_TYPS)].to_crs(EPSG_MGI)
@@ -121,7 +125,7 @@ def overlay_1829(bld: gpd.GeoDataFrame) -> np.ndarray:
     np.add.at(overlap, il, inter)
     frac = overlap / shapely.area(bgeo)
     log.info(f"  overlay done in {time.time()-t0:.0f}s")
-    return frac
+    return frac, overlap
 
 
 # ── Generalstadtplan 1904 raster test ───────────────────────────────────────
@@ -225,10 +229,12 @@ def main():
     log.info("─" * 50)
     log.info("  [1/2] 1829 — Franziszeischer Kataster (vector overlay)")
     log.info("─" * 50)
-    frac29 = overlay_1829(bld)
-    ex29 = frac29 >= FRAC_1829
+    frac29, abs29 = overlay_1829(bld)
+    ex29 = (frac29 >= FRAC_1829) | (abs29 >= ABS_1829)
+    n_abs = int(((frac29 < FRAC_1829) & (abs29 >= ABS_1829)).sum())
     log.info(f"  existed_1829: {ex29.sum():,} of {len(bld):,} "
-             f"({ex29.mean():.1%}) at overlap ≥ {FRAC_1829}")
+             f"({ex29.mean():.1%}) at overlap ≥ {FRAC_1829} or "
+             f"≥ {ABS_1829:.0f} m² ({n_abs:,} rescued by the absolute rule)")
 
     dark04 = np.full(len(bld), np.nan)
     cov04 = np.zeros(len(bld), dtype=bool)
@@ -251,6 +257,7 @@ def main():
     out = gpd.GeoDataFrame({
         "nfl_fid": nfl_fid,
         "frac_1829": frac29.round(4),
+        "abs_1829": abs29.round(1),
         "existed_1829": ex29,
         "dark_1904": np.round(dark04, 4),
         "cover_1904": cov04,
@@ -264,7 +271,8 @@ def main():
         "existed_1829": int(ex29.sum()),
         "cover_1904": int(cov04.sum()),
         "existed_1904": int(ex04.sum()),
-        "thresholds": {"frac_1829": FRAC_1829, "dark_1904": DARK_1904},
+        "thresholds": {"frac_1829": FRAC_1829, "abs_1829_m2": ABS_1829,
+                       "dark_1904": DARK_1904},
         "sources": ("FRANZKATOGD + GENLPLAN1904OGD © Stadt Wien "
                     "(CC BY 4.0) · DKM © BEV (CC BY 4.0)"),
     }
