@@ -51,6 +51,12 @@ Output: `output/shorts/verbaut_wien_70yrs.mp4`
 
 ## 🏡 Böheimkirchen Demo — 70 Years of a Rural Village
 
+<p align="center">
+  <img src="assets/verbaut_boeheimkirchen_core.gif" width="300" alt="70 years of building growth in Böheimkirchen (village core, BEV Kataster data)" />
+</p>
+
+▶ Videos: [full municipality](assets/verbaut_boeheimkirchen_70yrs.mp4) · [village core](assets/verbaut_boeheimkirchen_core_70yrs.mp4) · [final frame](assets/verbaut_boeheimkirchen_2026.png)
+
 ```
 python verbaut_boeheimkirchen.py                      # full municipality (8 m grid)
 python verbaut_boeheimkirchen.py --zoom-km 2.4 --grid 4   # village core close-up
