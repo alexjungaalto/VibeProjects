@@ -9,23 +9,27 @@
 ```
 Verbaut/
 ├── verbaut_short.py          ← YouTube Short generator (9:16, 1955–2026, ~30s)
+├── verbaut_boeheimkirchen.py ← Böheimkirchen rural-village Short (9:16, 1955–2026)
 ├── verbaut_animation.py      ← Landscape animation (16:9, 2008–2026)
 ├── austria_bauflaeche.py     ← Original sealed-surface estimator (static analysis)
 ├── README.md
 ├── .gitignore
 ├── LICENSE
-├── data/                     ← Cached OSM building footprints (*.gpkg)
+├── data/                     ← Cached OSM data (*.gpkg: buildings, roads,
+│   │                            railways, dissolved sealed surfaces)
+│   └── gwr/                  ← Statistik Austria GWR Bauperiode CSV
 ├── cache/                    ← Overpass API response cache
 └── output/                   ← Generated videos, frames, reports
     ├── verbaut_vienna_10fps.mp4       ← Landscape animation
-    ├── verbaut_vienna_<fps>fps.mp4
     ├── verbaut_growth.png             ← Growth chart
     ├── verbaut_report.json            ← Per-year statistics
     ├── frames/                        ← Individual frames
     └── shorts/                        ← YouTube Short output
-        ├── verbaut_wien_70yrs.mp4     ← Short (9:16, 32s)
-        ├── frames/
-        └── short_report.json
+        ├── verbaut_wien_70yrs.mp4     ← Vienna Short (9:16, 32s)
+        ├── verbaut_boeheimkirchen_70yrs.mp4       ← full municipality
+        ├── verbaut_boeheimkirchen_core_70yrs.mp4  ← village-core close-up
+        ├── frames/  frames_bhmk/  frames_bhmk_core/
+        └── short_report.json  bhmk_report.json  bhmk_core_report.json
 ```
 
 ---
@@ -43,13 +47,51 @@ Output: `output/shorts/verbaut_wien_70yrs.mp4`
 - Shows Vienna's building footprint growing from **34.7 km² → 58.1 km²**
 - Dark green background, red built-up overlay
 
+---
+
+## 🏡 Böheimkirchen Demo — 70 Years of a Rural Village
+
+```
+python verbaut_boeheimkirchen.py                      # full municipality (8 m grid)
+python verbaut_boeheimkirchen.py --zoom-km 2.4 --grid 4   # village core close-up
+```
+
+Output: `output/shorts/verbaut_boeheimkirchen_70yrs.mp4` (full) and
+`output/shorts/verbaut_boeheimkirchen_core_70yrs.mp4` (core close-up)
+
+`--zoom-km` sets the view width in km around the village centre (the map
+zooms; the km²/% stats still cover the whole municipality). Use a finer
+`--grid` when zoomed so individual houses render crisply.
+
+- **32 seconds**, 9:16 vertical
+- **72 frames** (1955 → 2026)
+- Shows Böheimkirchen's building footprint growing from **0.30 km² → 0.79 km²** (0.67 % → 1.74 % of the 45.5 km² municipality)
+- Uses a **growth curve built from Statistik Austria's GWR (Gebäude- und Wohnungsregister)** — the federal building register — which counts buildings per **Bauperiode** (construction period) for Böheimkirchen. The 2025-01-01 extract is downloaded from statistik.at and cached in `data/gwr/`. The per-period counts are turned into a cumulative year-by-year curve by linear interpolation between period endpoints, so the animation follows the **documented construction history** of the municipality rather than an assumed sigmoid. The 27 buildings with unknown period are distributed proportionally.
+- **White map background** with cartographic overlays (clipped to the municipal boundary):
+  - 🛣️ **A1 Westautobahn** (blue) and **B1 Bundesstraße** (orange) with white casing
+  - Secondary/tertiary roads in light grey
+  - 🚂 **Westbahn / Neue Westbahn** railway (dark line on white casing)
+  - 📍 Place-name labels: **Böheimkirchen**, **Mechters**, **Schildberg**, **Furth**
+- Rendered on an **8 m grid**; each built cell is drawn with a 1-cell halo and a minimum opacity so single farmhouses stay visible at phone-screen scale
+- **Sealed-surface layer** (grey, constant across frames): roads and railways buffered to their estimated pavement width (same width assumptions as `austria_bauflaeche.py`), parking areas (`amenity=parking`), and sealed landuse (commercial/industrial/retail/garages/…). Unpaved `track`/`path` ways are excluded unless tagged with a paved surface, and — unlike `austria_bauflaeche.py` — `landuse=residential` is not counted (at village scale it is mostly unsealed gardens; buildings are counted separately). OSM has no historical road data, so this layer shows **today's extent in every frame**; only the buildings animate. Result: **~2.9 % of the municipality is sealed today** (1.32 km² dissolved: 0.79 km² buildings + 0.65 km² roads/parking/landuse, minus overlaps) vs. 1.74 % from buildings alone.
+
+| Year | Cumulative fraction | Building footprint | Built-up ratio |
+|------|-------------------|-------------------|----------------|
+| **1955** | 26 % | 0.21 km² | 0.45 % |
+| **1975** | 44 % | 0.34 km² | 0.75 % |
+| **1995** | 65 % | 0.49 km² | 1.07 % |
+| **2015** | 90 % | 0.71 km² | 1.56 % |
+| **2026** | 100 % | 0.79 km² | 1.74 % |
+
+---
+
 ### How it works
 
 | Step | What |
 |------|------|
-| **1. Load** | Download 250 k building footprints from OSM (cached locally) |
-| **2. Date** | Assign each building a year via random sampling against a researched growth curve |
-| **3. Raster** | Rasterise all buildings ONTO a 12 m grid in a single pass (year + coverage arrays) |
+| **1. Load** | Download building footprints from OSM (250 k for Vienna, ~3 k for Böheimkirchen; cached locally) |
+| **2. Date** | Assign each building a year via random sampling against the growth curve (GWR-based for Böheimkirchen, researched anchors for Vienna) |
+| **3. Raster** | Rasterise all buildings onto a grid (12 m Vienna, 8 m Böheimkirchen) in a single pass (year + coverage arrays) |
 | **4. Frame** | Each frame = `np.where(year_raster ≤ year, area_raster, 0)` → direct RGB compositing |
 | **5. Video** | Compile 72 frames with pacing (intro 4s → middle → outro 5s) |
 
@@ -113,10 +155,11 @@ OSMnx downloads data from the OpenStreetMap Overpass API — an internet connect
 
 ## 🧠 Data & Limitations
 
-- **Building footprints only**: The animations show building coverage (14 % of Vienna), not total sealed surface (46.8 %, which includes roads, parking, etc.).
+- **Building footprints only** (Vienna short & landscape animation): those animations show building coverage (14 % of Vienna), not total sealed surface (46.8 %, which includes roads, parking, etc.). The Böheimkirchen short additionally shows a grey sealed-surface layer, but as a **present-day constant** — road/parking growth over time is not animated because no historical data source exists for it.
+- **Sealed-surface estimate**: road widths are assumed per highway class where OSM lacks `width` tags; private driveways, sealed courtyards, and sidewalks are largely missing from OSM — the ~2.9 % for Böheimkirchen is a lower bound.
 - **Year assignment**: Individual building ages are unknown — years are statistically sampled to match the aggregate growth curve. The growth pattern looks realistic but individual buildings may be misdated.
 - **OSM completeness**: OSM building coverage in Austria is excellent (>95 % for urban areas), but small structures (sheds, garden huts) may be over-represented.
-- **Raster resolution**: 12 m grid cells mean very small buildings (<~50 m²) may not be individually visible.
+- **Raster resolution**: grid cells (12 m Vienna, 8 m Böheimkirchen) mean very small buildings (<~50 m²) may not be individually visible; the Böheimkirchen renderer dilates built cells by one cell for visibility, so red pixels slightly overstate footprint extent (the km²/% numbers are computed from the true polygon areas, not the pixels).
 
 ---
 
