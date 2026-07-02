@@ -15,8 +15,8 @@ Verbaut/
 ├── README.md
 ├── .gitignore
 ├── LICENSE
-├── data/                     ← Cached OSM data (*.gpkg: buildings, roads,
-│   │                            railways, dissolved sealed surfaces)
+├── data/                     ← Cached data (*.gpkg: DKM Nutzungsflächen,
+│   │                            OSM roads/railways for cartography)
 │   └── gwr/                  ← Statistik Austria GWR Bauperiode CSV
 ├── cache/                    ← Overpass API response cache
 └── output/                   ← Generated videos, frames, reports
@@ -65,7 +65,8 @@ zooms; the km²/% stats still cover the whole municipality). Use a finer
 
 - **32 seconds**, 9:16 vertical
 - **72 frames** (1955 → 2026)
-- Shows Böheimkirchen's building footprint growing from **0.30 km² → 0.79 km²** (0.67 % → 1.74 % of the 45.5 km² municipality)
+- Shows Böheimkirchen's building area growing from **0.20 km² → 0.73 km²** (0.44 % → 1.60 % of the 45.5 km² municipality)
+- **Building geometry from the cadastre**: the animated buildings are the surveyed *Gebäude* Nutzungsflächen (NS 41) of the **Digitale Katastralmappe (DKM)** — the geometric counterpart of the Grundbuch — fetched per Katastralgemeinde (all 21 KGs of the municipality) from the BEV Niederösterreich snapshot via HTTP range requests (a few MB instead of the 3.3 GB state file). Kataster © BEV, CC BY 4.0, Stichtag 2026-04-01.
 - Uses a **growth curve built from Statistik Austria's GWR (Gebäude- und Wohnungsregister)** — the federal building register — which counts buildings per **Bauperiode** (construction period) for Böheimkirchen. The 2025-01-01 extract is downloaded from statistik.at and cached in `data/gwr/`. The per-period counts are turned into a cumulative year-by-year curve by linear interpolation between period endpoints, so the animation follows the **documented construction history** of the municipality rather than an assumed sigmoid. The 27 buildings with unknown period are distributed proportionally.
 - **White map background** with cartographic overlays (clipped to the municipal boundary):
   - 🛣️ **A1 Westautobahn** (blue) and **B1 Bundesstraße** (orange) with white casing
@@ -73,15 +74,15 @@ zooms; the km²/% stats still cover the whole municipality). Use a finer
   - 🚂 **Westbahn / Neue Westbahn** railway (dark line on white casing)
   - 📍 Place-name labels: **Böheimkirchen**, **Mechters**, **Schildberg**, **Furth**
 - Rendered on an **8 m grid**; each built cell is drawn with a 1-cell halo and a minimum opacity so single farmhouses stay visible at phone-screen scale
-- **Sealed-surface layer** (grey, constant across frames): roads and railways buffered to their estimated pavement width (same width assumptions as `austria_bauflaeche.py`), parking areas (`amenity=parking`), and sealed landuse (commercial/industrial/retail/garages/…). **Data source:** all road, parking, and landuse geometries come from **OpenStreetMap** (Overpass API, © OpenStreetMap contributors, ODbL) — there is no official cadastral or Statistik Austria source for sealed road/parking area in this demo. Road *centerlines* are real OSM data; the *pavement widths* are model assumptions per highway class, used only where OSM has no explicit `width` tag. Unpaved `track`/`path` ways are excluded unless tagged with a paved surface, and — unlike `austria_bauflaeche.py` — `landuse=residential` is not counted (at village scale it is mostly unsealed gardens; buildings are counted separately). OSM has no historical road data, so this layer shows **today's extent in every frame**; only the buildings animate. Result: **~2.9 % of the municipality is sealed today** (1.32 km² dissolved: 0.79 km² buildings + 0.65 km² roads/parking/landuse, minus overlaps) vs. 1.74 % from buildings alone.
+- **Sealed-surface layer** (grey, constant across frames), also from the DKM: the *measured* cadastral Nutzungsflächen for **Parkplätze (NS 42)**, **Gebäudenebenflächen/befestigt (NS 83)**, **Schienenverkehrsanlagen (NS 92)**, and **Straßenverkehrsanlagen (NS 95)** — no assumed road widths. *Betriebsflächen* (NS 63, 0.63 km²) are excluded as only partly sealed. The cadastre has no historical geometry, so the grey layer shows **today's extent in every frame**; only the buildings animate. Result: **5.9 % of the municipality is sealed today** (2.69 km² = 0.73 km² buildings + 1.96 km² roads/rail/parking/paved) vs. 1.6 % from buildings alone. For comparison, an earlier OSM-based estimate (road centerlines buffered by assumed pavement widths) gave only 2.9 % — the cadastral road parcels are nearly 3× the buffered estimate. Unpaved `track`/`path` ways are excluded unless tagged with a paved surface, and — unlike `austria_bauflaeche.py` — `landuse=residential` is not counted (at village scale it is mostly unsealed gardens; buildings are counted separately). OSM has no historical road data, so this layer shows **today's extent in every frame**; only the buildings animate. Result: **~2.9 % of the municipality is sealed today** (1.32 km² dissolved: 0.79 km² buildings + 0.65 km² roads/parking/landuse, minus overlaps) vs. 1.74 % from buildings alone.
 
 | Year | Cumulative fraction | Building footprint | Built-up ratio |
 |------|-------------------|-------------------|----------------|
-| **1955** | 26 % | 0.21 km² | 0.45 % |
-| **1975** | 44 % | 0.34 km² | 0.75 % |
-| **1995** | 65 % | 0.49 km² | 1.07 % |
-| **2015** | 90 % | 0.71 km² | 1.56 % |
-| **2026** | 100 % | 0.79 km² | 1.74 % |
+| **1955** | 26 % | 0.20 km² | 0.44 % |
+| **1975** | 44 % | 0.32 km² | 0.70 % |
+| **1995** | 65 % | 0.47 km² | 1.04 % |
+| **2015** | 90 % | 0.66 km² | 1.46 % |
+| **2026** | 100 % | 0.73 km² | 1.60 % |
 
 ---
 
@@ -89,7 +90,7 @@ zooms; the km²/% stats still cover the whole municipality). Use a finer
 
 | Step | What |
 |------|------|
-| **1. Load** | Download building footprints from OSM (250 k for Vienna, ~3 k for Böheimkirchen; cached locally) |
+| **1. Load** | Building geometry: OSM footprints for Vienna (250 k), BEV DKM cadastral *Gebäude* areas for Böheimkirchen (~3.3 k); cached locally |
 | **2. Date** | Assign each building a year via random sampling against the growth curve (GWR-based for Böheimkirchen, researched anchors for Vienna) |
 | **3. Raster** | Rasterise all buildings onto a grid (12 m Vienna, 8 m Böheimkirchen) in a single pass (year + coverage arrays) |
 | **4. Frame** | Each frame = `np.where(year_raster ≤ year, area_raster, 0)` → direct RGB compositing |
@@ -155,8 +156,8 @@ OSMnx downloads data from the OpenStreetMap Overpass API — an internet connect
 
 ## 🧠 Data & Limitations
 
-- **Building footprints only** (Vienna short & landscape animation): those animations show building coverage (14 % of Vienna), not total sealed surface (46.8 %, which includes roads, parking, etc.). The Böheimkirchen short additionally shows a grey sealed-surface layer, but as a **present-day constant** — road/parking growth over time is not animated because no historical data source exists for it.
-- **Sealed-surface estimate**: road widths are assumed per highway class where OSM lacks `width` tags; private driveways, sealed courtyards, and sidewalks are largely missing from OSM — the ~2.9 % for Böheimkirchen is a lower bound.
+- **Building footprints only** (Vienna short & landscape animation): those animations show building coverage (14 % of Vienna), not total sealed surface (46.8 %, which includes roads, parking, etc.). The Böheimkirchen short additionally shows a grey sealed-surface layer, but as a **present-day constant** — road/parking growth over time is not animated because no historical geometry source exists for it.
+- **Cadastral "sealed" is a use classification, not a pavement survey**: the DKM Nutzungsflächen classify parcels by *use*. Straßenverkehrsanlagen parcels include some gravel rural lanes (overstating sealing), while the excluded Betriebsflächen (0.63 km²) are partly paved (understating it). The 5.9 % is the cadastral *Bau- und Verkehrsfläche* share — the best available measured proxy for soil sealing at municipal scale, sitting between the OSM lower bound (2.9 %) and land-take totals.
 - **Year assignment**: Individual building ages are unknown — years are statistically sampled to match the aggregate growth curve. The growth pattern looks realistic but individual buildings may be misdated.
 - **OSM completeness**: OSM building coverage in Austria is excellent (>95 % for urban areas), but small structures (sheds, garden huts) may be over-represented.
 - **Raster resolution**: grid cells (12 m Vienna, 8 m Böheimkirchen) mean very small buildings (<~50 m²) may not be individually visible; the Böheimkirchen renderer dilates built cells by one cell for visibility, so red pixels slightly overstate footprint extent (the km²/% numbers are computed from the true polygon areas, not the pixels).

@@ -3,9 +3,9 @@
 Verbaut — Böheimkirchen 🏡
 ==========================
 70 years of built-up area evolution (1955–2026) for the village of
-Böheimkirchen (Lower Austria). Vertical 9:16 short using real OSM
-building footprints, a documented rural-growth model, and a
-present-day sealed-surface layer (roads, parking, sealed landuse).
+Böheimkirchen (Lower Austria). Vertical 9:16 short using surveyed
+cadastral building areas (BEV DKM), a documented rural-growth model,
+and a measured present-day sealed-surface layer from the cadastre.
 
 Böheimkirchen is a small rural municipality (~45.5 km², ~2 950 buildings
 in OSM). Unlike Vienna — a mature city already ~60 % built by 1955 —
@@ -30,21 +30,29 @@ sampling against this *real* distribution. This makes the animation
 follow the documented construction history of the municipality rather
 than an assumed sigmoid.
 
-Sealed-surface layer (present-day, constant)
---------------------------------------------
-Buildings are only part of the sealed ground. A grey layer shows all
-other sealed surfaces as of today: roads and railways buffered to their
-estimated pavement width (width assumptions shared with
-``austria_bauflaeche.py``), parking areas, and sealed landuse. All
-road/parking/landuse geometries come from OpenStreetMap via the
-Overpass API (© OSM contributors, ODbL); the centerlines are real OSM
-data, but the pavement widths are per-class model assumptions used
-wherever OSM has no explicit ``width`` tag. Unpaved
-``track``/``path`` ways and ``landuse=residential`` (mostly gardens at
-village scale) are excluded. OSM has no historical road data, so this
-layer is constant across frames — only the buildings animate. Result:
-~2.9 % of the municipality is sealed today vs. 1.74 % from buildings
-alone.
+Building & sealed-surface geometry: BEV Kataster (DKM)
+------------------------------------------------------
+Both the animated buildings and the grey sealed-surface layer come from
+the **Digitale Katastralmappe (DKM)** — the surveyed, parcel-accurate
+geometric counterpart of the Grundbuch, published as open data by the
+BEV (Kataster © BEV, CC BY 4.0, Stichtag 2026-04-01). The DKM
+Nutzungsflächen (NFL) partition every Katastralgemeinde into use
+classes (Nutzungssymbol NS, Katastralmappe-SHP V2.9, Tabelle 8):
+
+    NS 41  Gebäude                       → red, animated via GWR curve
+    NS 42  Parkplätze                    → grey, constant
+    NS 83  Gebäudenebenflächen/befestigt → grey, constant
+    NS 92  Schienenverkehrsanlagen       → grey, constant
+    NS 95  Straßenverkehrsanlagen        → grey, constant
+
+These are *measured* areas — no assumed road widths. The NFL layers of
+the municipality's 21 Katastralgemeinden are fetched from the BEV
+Niederösterreich snapshot zip via HTTP range requests (a few MB instead
+of the 3.3 GB state file) and cached. The cadastre has no historical
+geometry either, so the grey layer is constant across frames — only the
+buildings animate. Result: 5.9 % of the municipality is sealed today
+vs. 1.6 % from buildings alone. (Betriebsflächen, NS 63, are excluded:
+only partly sealed.)
 
 Usage:
     python verbaut_boeheimkirchen.py                        # full municipality
@@ -56,12 +64,14 @@ Output (``_core`` suffix when zoomed):
     output/shorts/frames_bhmk[_core]/
     output/shorts/bhmk[_core]_report.json
 
-Data: © OpenStreetMap contributors (ODbL) · GWR © Statistik Austria
+Data: Kataster/DKM © BEV (CC BY 4.0) · GWR © Statistik Austria ·
+      roads/labels © OpenStreetMap contributors (ODbL)
 Author: VibeProjects · License: MIT
 """
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import logging
 import os
@@ -118,23 +128,93 @@ GWR_ZIP_URL = ("https://www.statistik.at/fileadmin/pages/490/"
 #  1. DATA
 # ════════════════════════════════════════════════════════════════════════════
 
-def load_buildings(force: bool = False) -> gpd.GeoDataFrame:
-    cache = Path("data/buildings_boeheimkirchen.gpkg")
-    if cache.exists() and not force:
-        log.info(f"Loading cached buildings from {cache}…")
-        return gpd.read_file(cache)
+# ── BEV Kataster / Digitale Katastralmappe (DKM) ────────────────────────────
+# The DKM is the surveyed geometric counterpart of the Grundbuch. Its
+# Nutzungsflächen (NFL) partition each Katastralgemeinde into use classes.
+# Kataster © BEV, CC BY 4.0.
+DKM_STICHTAG = "20260401"
+DKM_ZIP_URL = (f"https://data.bev.gv.at/download/Kataster/shp/{DKM_STICHTAG}/"
+               f"KAT_DKM_Niederoesterreich_SHP_{DKM_STICHTAG}.zip")
+DKM_GPKG = Path("data/dkm_nfl_boeheimkirchen.gpkg")
+# Katastralgemeinden of Gemeinde Böheimkirchen (GKZ 31903), from the BEV
+# KG-Verzeichnis (data.bev.gv.at → Katastralgemeindenverzeichnis)
+DKM_KGS = ["19412", "19419", "19424", "19428", "19447", "19452", "19460",
+           "19481", "19488", "19491", "19496", "19506", "19520", "19522",
+           "19563", "19567", "19573", "19576", "19591", "19611", "19620"]
+# Nutzungssymbol codes (BEV Katastralmappe-SHP V2.9, Tabelle 8)
+NS_GEBAEUDE = 41                # Gebäude — animated buildings
+NS_SEALED = [42, 83, 92, 95]    # Parkplätze, Gebäudenebenflächen (befestigt),
+                                # Schienen- und Straßenverkehrsanlagen
 
-    log.info("Downloading buildings for Böheimkirchen from Overpass…")
-    import osmnx as ox
-    ox.settings.timeout = 600
-    ox.settings.log_console = False
+
+class _HttpFile(io.RawIOBase):
+    """Read-only seekable file over HTTP range requests, so ``zipfile``
+    can pull single members out of the 3.3 GB BEV state zip."""
+
+    def __init__(self, url: str):
+        import requests
+        self._requests = requests
+        self.url = url
+        self.pos = 0
+        self.size = int(requests.head(url, timeout=30).headers["Content-Length"])
+
+    def seek(self, off, whence=0):
+        self.pos = {0: off, 1: self.pos + off, 2: self.size + off}[whence]
+        return self.pos
+
+    def tell(self):
+        return self.pos
+
+    def seekable(self):
+        return True
+
+    def readable(self):
+        return True
+
+    def read(self, n=-1):
+        if n == -1:
+            n = self.size - self.pos
+        if n <= 0:
+            return b""
+        end = min(self.pos + n - 1, self.size - 1)
+        r = self._requests.get(self.url, timeout=120,
+                               headers={"Range": f"bytes={self.pos}-{end}"})
+        r.raise_for_status()
+        self.pos += len(r.content)
+        return r.content
+
+
+def load_dkm(force: bool = False) -> gpd.GeoDataFrame:
+    """
+    DKM Nutzungsflächen (all NS classes) for the 21 Katastralgemeinden of
+    Böheimkirchen, fetched per KG from the BEV Niederösterreich snapshot
+    zip via HTTP range requests and cached as one GeoPackage.
+    """
+    if DKM_GPKG.exists() and not force:
+        log.info(f"Loading cached DKM Nutzungsflächen from {DKM_GPKG}…")
+        return gpd.read_file(DKM_GPKG)
+
+    import zipfile
+    import pandas as pd
+    log.info(f"Downloading DKM NFL for {len(DKM_KGS)} Katastralgemeinden "
+             f"from BEV (Stichtag {DKM_STICHTAG})…")
     t0 = time.time()
-    gdf = ox.features_from_place("Böheimkirchen, Austria", tags={"building": True})
-    bld = gdf[gdf.geometry.type.isin(["Polygon", "MultiPolygon"])].copy()
-    log.info(f"  {len(bld):,} buildings in {time.time() - t0:.0f}s")
-    cache.parent.mkdir(exist_ok=True)
-    bld.to_file(cache, driver="GPKG")
-    return bld
+    tmp = Path("data/dkm_tmp")
+    tmp.mkdir(parents=True, exist_ok=True)
+    z = zipfile.ZipFile(_HttpFile(DKM_ZIP_URL))
+    parts = []
+    for kg in DKM_KGS:
+        for ext in ("shp", "shx", "dbf", "prj"):
+            (tmp / f"{kg}NFL_V2.{ext}").write_bytes(
+                z.read(f"{kg}/{kg}NFL_V2.{ext}"))
+        parts.append(gpd.read_file(tmp / f"{kg}NFL_V2.shp"))
+        log.info(f"    KG {kg}: {len(parts[-1]):,} Nutzungsflächen")
+    nfl = gpd.GeoDataFrame(pd.concat(parts, ignore_index=True),
+                           crs=parts[0].crs)
+    nfl.to_file(DKM_GPKG, driver="GPKG")
+    log.info(f"  {len(nfl):,} Nutzungsflächen in {time.time()-t0:.0f}s "
+             f"(cached -> {DKM_GPKG})")
+    return nfl
 
 
 def get_boundary() -> gpd.GeoDataFrame:
@@ -200,97 +280,7 @@ def load_railways(force: bool = False) -> gpd.GeoDataFrame:
     return r
 
 
-# ── Sealed surfaces beyond buildings (present-day, constant layer) ──────────
-# OSM has no historical road/parking data, so this layer shows TODAY's
-# extent in every frame — the animation only moves the buildings.
-# Width assumptions are shared with austria_bauflaeche.py.
-# Unlike austria_bauflaeche.py we deliberately EXCLUDE landuse=residential
-# and cemetery here: at village scale those polygons are mostly unsealed
-# gardens, and buildings are already counted separately.
-SEALED_LANDUSE = ["commercial", "industrial", "retail", "garages",
-                  "depot", "parking", "road", "construction"]
-# track/path are mostly unpaved field ways — only count them when the
-# surface tag says otherwise (austria_bauflaeche.py counts them all)
-UNPAVED_DEFAULT = {"track", "path"}
-PAVED_SURFACES = {"asphalt", "concrete", "paved", "paving_stones",
-                  "sett", "cobblestone"}
-C_SEALED = "#b9c0c5"     # other sealed surfaces — grey
-
-
-def _width_m(row, width_map: dict, key: str) -> float:
-    """Pavement width for a line feature: explicit width tag, else class default."""
-    w = row.get("width")
-    if w:
-        try:
-            return float(str(w).replace("m", "").strip())
-        except ValueError:
-            pass
-    return width_map.get(str(row.get(key, "")), 0.0)
-
-
-def _sealed_parts(gdf, width_map: dict, key: str) -> list:
-    """LAEA geometries for a feature set: lines buffered to half their
-    pavement width, polygons taken as-is."""
-    g = gdf.to_crs(EPSG_LAEA)
-    lines = g[g.geometry.type.isin(["LineString", "MultiLineString"])]
-    polys = g[g.geometry.type.isin(["Polygon", "MultiPolygon"])]
-    parts = list(polys.geometry)
-    if len(lines):
-        widths = lines.apply(lambda r: _width_m(r, width_map, key), axis=1)
-        parts += list(lines.geometry.buffer(widths.values / 2.0))
-    return parts
-
-
-def load_sealed(boundary: gpd.GeoDataFrame,
-                force: bool = False) -> gpd.GeoDataFrame:
-    """
-    Present-day sealed surfaces other than buildings, dissolved, in LAEA:
-    all roads and railways buffered to their estimated pavement width
-    (same assumptions as austria_bauflaeche.py), parking areas, and
-    sealed landuse polygons — clipped to the municipality.
-    """
-    cache = Path("data/sealed_boeheimkirchen.gpkg")
-    if cache.exists() and not force:
-        log.info(f"Loading cached sealed surfaces from {cache}…")
-        return gpd.read_file(cache)
-
-    log.info("Downloading sealed surfaces (roads/parking/landuse) from Overpass…")
-    import osmnx as ox
-    from shapely.ops import unary_union
-    from austria_bauflaeche import ROAD_WIDTH, RAIL_WIDTH
-    ox.settings.timeout = 600
-    ox.settings.log_console = False
-
-    parts = []
-    for tags, wmap, key, what in [
-        ({"highway": list(ROAD_WIDTH)}, ROAD_WIDTH, "highway", "roads"),
-        ({"railway": list(RAIL_WIDTH)}, RAIL_WIDTH, "railway", "railways"),
-        ({"amenity": "parking"}, {}, "amenity", "parking"),
-        ({"landuse": SEALED_LANDUSE}, {}, "landuse", "sealed landuse"),
-    ]:
-        try:
-            g = ox.features_from_place("Böheimkirchen, Austria", tags=tags)
-        except Exception as e:
-            log.info(f"    {what}: none found ({type(e).__name__})")
-            continue
-        if key == "highway":
-            unpaved = g["highway"].isin(UNPAVED_DEFAULT)
-            if "surface" in g.columns:
-                unpaved &= ~g["surface"].isin(PAVED_SURFACES)
-            log.info(f"    ({int(unpaved.sum()):,} unpaved tracks/paths excluded)")
-            g = g[~unpaved]
-        p = _sealed_parts(g, wmap, key)
-        log.info(f"    {what}: {len(p):,} geometries")
-        parts += p
-
-    merged = unary_union(parts)
-    clip_poly = boundary.to_crs(EPSG_LAEA).union_all()
-    merged = merged.intersection(clip_poly)
-    sealed = gpd.GeoDataFrame(geometry=[merged], crs=EPSG_LAEA)
-    cache.parent.mkdir(exist_ok=True)
-    sealed.to_file(cache, driver="GPKG")
-    log.info(f"  Other sealed surfaces: {merged.area / 1e6:.2f} km² (cached -> {cache})")
-    return sealed
+C_SEALED = "#b9c0c5"     # other sealed surfaces (Kataster) — grey
 
 
 # Place names to label (villages / cadastral centres within the municipality)
@@ -546,8 +536,8 @@ def render_frame(year_raster, area_raster, extent_info, boundary, total_km2,
                 transform=ax_map.transAxes, fontsize=7.5, color=BLD,
                 ha="left", va="top", fontweight="bold", zorder=9, bbox=lg_box)
     if sealed is not None:
-        ax_map.text(0.02, 0.968, "■ Straßen, Park- u. a. versiegelte "
-                    "Flächen (Stand heute)",
+        ax_map.text(0.02, 0.968, "■ Straßen, Parkplätze u. befestigte "
+                    "Flächen (Kataster, heute)",
                     transform=ax_map.transAxes, fontsize=7.5, color="#7d868c",
                     ha="left", va="top", fontweight="bold", zorder=9,
                     bbox=lg_box)
@@ -618,7 +608,7 @@ def render_frame(year_raster, area_raster, extent_info, boundary, total_km2,
         (0.5, f"{ratio:.1f} % verbaut", rc),
     ]
     if sealed_pct is not None:
-        chips.append((0.8, f"~{sealed_pct:.1f} % versiegelt", C_SEALED))
+        chips.append((0.8, f"{sealed_pct:.1f} % versiegelt", C_SEALED))
     else:
         chips.append((0.8, f"{n_buildings:,} Geb.", TXT_LI))
     for xp, label, col in chips:
@@ -626,12 +616,16 @@ def render_frame(year_raster, area_raster, extent_info, boundary, total_km2,
                      color=col, ha="center", va="center",
                      bbox=dict(boxstyle="round,pad=0.4", facecolor="#1a1a2e",
                                edgecolor=col, lw=0.5))
-    ax_info.text(0.5, 0.10,
+    ax_info.text(0.5, 0.12,
                  f"Böheimkirchen · Niederösterreich · {total_km2:.0f} km²",
                  fontsize=9, color=TXT_MI, ha="center", va="center")
-    ax_info.text(0.5, 0.04,
-                 "versiegelt = Gebäude + Straßen/Parkflächen (Stand heute) | "
-                 "© OpenStreetMap (ODbL)",
+    ax_info.text(0.5, 0.065,
+                 "versiegelt = Gebäude + Straßen/Schienen/Parkplätze/"
+                 "befestigte Flächen (Stand heute)",
+                 fontsize=6, color=TXT_D, ha="center", va="center")
+    ax_info.text(0.5, 0.025,
+                 "Kataster/DKM © BEV (CC BY 4.0) · Gebäudealter: GWR "
+                 "Statistik Austria · © OpenStreetMap (ODbL)",
                  fontsize=6, color=TXT_D, ha="center", va="center")
 
     # no bbox_inches="tight" — keep the exact 5.4×9.6 in (9:16) canvas
@@ -666,18 +660,21 @@ def main():
 
     # 1. Load
     log.info("─" * 52)
-    log.info("  [1/6] Load building footprints from OSM")
+    log.info("  [1/6] Load DKM Nutzungsflächen (BEV Kataster)")
     log.info("─" * 52)
-    bld = load_buildings(args.force)
+    nfl = load_dkm(args.force)
+    bld = nfl[nfl["NS"] == NS_GEBAEUDE].copy()
+    sealed = nfl[nfl["NS"].isin(NS_SEALED)].to_crs(EPSG_LAEA)
     boundary = get_boundary()
     total_km2 = float(boundary.to_crs(EPSG_LAEA).area.sum()) / 1e6
-    log.info(f"  Böheimkirchen: {total_km2:.2f} km², {len(bld):,} buildings")
+    log.info(f"  Böheimkirchen: {total_km2:.2f} km², "
+             f"{len(bld):,} Gebäudeflächen (NS 41), "
+             f"{len(sealed):,} sonst. versiegelte Flächen (NS {NS_SEALED})")
     # clip line features to the municipality so they don't spill into the
     # empty margins of the map panel
     roads = gpd.clip(load_roads(args.force), boundary)
     railways = gpd.clip(load_railways(args.force), boundary)
     places = geocode_places()
-    sealed = load_sealed(boundary, args.force)   # LAEA, dissolved, clipped
 
     # Optional zoom window around the village core, shaped to fill the
     # map panel (view height = width × panel aspect)
@@ -722,15 +719,13 @@ def main():
     laea = bld.to_crs(EPSG_LAEA)
     vals = laea.area.values
 
-    # Present-day sealed total: buildings ∪ other sealed, dissolved so
-    # overlaps (e.g. a garage on a parking polygon) aren't double-counted.
-    from shapely.ops import unary_union
+    # Present-day sealed total. The DKM Nutzungsflächen are a planar
+    # partition (no overlaps), so plain sums are exact — no dissolve needed.
     other_sealed_km2 = float(sealed.area.sum()) / 1e6
-    sealed_union = unary_union(list(sealed.geometry) + list(laea.geometry))
-    total_sealed_km2 = float(sealed_union.area) / 1e6
+    total_sealed_km2 = other_sealed_km2 + float(vals.sum()) / 1e6
     sealed_pct = total_sealed_km2 / total_km2 * 100
-    log.info(f"  Other sealed surfaces (today): {other_sealed_km2:.2f} km²")
-    log.info(f"  Total sealed today (dissolved): {total_sealed_km2:.2f} km² "
+    log.info(f"  Other sealed surfaces (Kataster, today): {other_sealed_km2:.2f} km²")
+    log.info(f"  Total sealed today: {total_sealed_km2:.2f} km² "
              f"= {sealed_pct:.1f}% of municipality")
 
     yearly = {}
@@ -795,17 +790,22 @@ def main():
             "other_sealed_km2_today": round(other_sealed_km2, 3),
             "total_sealed_km2_today": round(total_sealed_km2, 3),
             "total_sealed_pct_today": round(sealed_pct, 2),
-            "note": ("roads/railways buffered to estimated pavement width "
-                     "(austria_bauflaeche.py assumptions) + parking areas + "
-                     "sealed landuse (excl. residential/cemetery); "
-                     "present-day extent, constant across frames — OSM has "
-                     "no historical road data"),
+            "source": (f"BEV DKM Nutzungsflächen (Kataster © BEV, CC BY 4.0, "
+                       f"Stichtag {DKM_STICHTAG}), NS classes: Gebäude 41; "
+                       f"sealed {NS_SEALED} = Parkplätze, Gebäudenebenflächen "
+                       f"(befestigt), Schienen- u. Straßenverkehrsanlagen"),
+            "note": ("measured cadastral areas, no assumed road widths; "
+                     "present-day extent, constant across frames — the "
+                     "cadastre has no historical geometry. Betriebsflächen "
+                     "(NS 63) excluded as only partly sealed"),
         },
         "years": years,
         "frames": {str(y): {"bu_km2": yearly[y]["km2"],
                             "ratio": round(yearly[y]["km2"]/total_km2*100, 3),
                             "n": yearly[y]["n"]} for y in years},
-        "data_source": "© OpenStreetMap contributors (ODbL) · GWR © Statistik Austria",
+        "data_source": ("Kataster/DKM © BEV (CC BY 4.0) · GWR © Statistik "
+                        "Austria · roads/labels © OpenStreetMap contributors "
+                        "(ODbL)"),
     }
     if args.zoom_km:
         report["view"] = {"center": "Böheimkirchen village core",
