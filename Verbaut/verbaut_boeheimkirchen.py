@@ -35,7 +35,11 @@ Sealed-surface layer (present-day, constant)
 Buildings are only part of the sealed ground. A grey layer shows all
 other sealed surfaces as of today: roads and railways buffered to their
 estimated pavement width (width assumptions shared with
-``austria_bauflaeche.py``), parking areas, and sealed landuse. Unpaved
+``austria_bauflaeche.py``), parking areas, and sealed landuse. All
+road/parking/landuse geometries come from OpenStreetMap via the
+Overpass API (© OSM contributors, ODbL); the centerlines are real OSM
+data, but the pavement widths are per-class model assumptions used
+wherever OSM has no explicit ``width`` tag. Unpaved
 ``track``/``path`` ways and ``landuse=residential`` (mostly gardens at
 village scale) are excluded. OSM has no historical road data, so this
 layer is constant across frames — only the buildings animate. Result:
