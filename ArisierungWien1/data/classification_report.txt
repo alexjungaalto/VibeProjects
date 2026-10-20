@@ -1,0 +1,22 @@
+scanned:      5450 Bezirk-1 pages
+properties:   82
+perpetrators: 11
+
+  arisiert         52
+  enteignet        12
+  sammelwohnung    10
+  reich            8
+
+  betrieb          40
+  person           22
+  gebaeude         10
+  gedenkzeichen    10
+
+  restitution mentioned: 20
+
+excluded (5):
+  Dorotheum  --  stop-list
+  Lessingdenkmal  --  title pattern [Dd]enkmal$
+  Nationalsozialistische Volkswohlfahrt  --  stop-list
+  Verwertungsstelle für jüdisches Umzugsgut der Geheimen Staatspolizei  --  stop-list
+  Zum blauen Igel (1)  --  evidence not quotable

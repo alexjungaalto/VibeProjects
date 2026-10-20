@@ -1,0 +1,2023 @@
+{
+ "David Kreppel": {
+  "lat": 48.210863888889,
+  "lon": 16.380997222222,
+  "addresses": [
+   "Biberstraße 15",
+   "Biberstraße 15"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gluckgasse 2": {
+  "lat": 48.205466666667,
+  "lon": 16.369625,
+  "addresses": [
+   "Gluckgasse 2",
+   "Tegetthoffstraße 4"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.205466666667,
+   16.369625
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Himmelpfortgasse 15": {
+  "lat": 48.205480555556,
+  "lon": 16.373808333333,
+  "addresses": [
+   "Himmelpfortgasse 15"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20546397557,
+   16.373920447763
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Kleeblattgasse 11": {
+  "lat": 48.210791666667,
+  "lon": 16.370422222222,
+  "addresses": [
+   "Kleeblattgasse 11"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Kärntner Straße 10": {
+  "lat": 48.207152777778,
+  "lon": 16.371111111111,
+  "addresses": [
+   "Kärntner Straße 10",
+   "Seilergasse 7"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Misrachihaus": {
+  "lat": 48.211922222222,
+  "lon": 16.369247222222,
+  "addresses": [
+   "Judenplatz 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211921234018,
+   16.369247462557
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Rondell Kino": {
+  "lat": 48.206836111111,
+  "lon": 16.376641666667,
+  "addresses": [
+   "Riemergasse 11"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.206835896964,
+   16.376640278498
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Weihburggasse 9": {
+  "lat": 48.206994444444,
+  "lon": 16.373036111111,
+  "addresses": [
+   "Weihburggasse 9",
+   "Liliengasse 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.206993415555,
+   16.373036194533
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Zum Blumenstock (1, Ballgasse 3)": {
+  "lat": 48.206380555556,
+  "lon": 16.373383333333,
+  "addresses": [
+   "Ballgasse 3",
+   "Blumenstockgasse 5"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20638,
+   16.37333
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Alfred Ibach": {
+  "lat": 48.206994444444,
+  "lon": 16.373036111111,
+  "addresses": [
+   "Liliengasse 3"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Alma Mahler-Werfel": {
+  "lat": 48.202861111111,
+  "lon": 16.364219444444,
+  "addresses": [
+   "Elisabethstraße 22"
+  ],
+  "addresses_other": [
+   "Steinfeldgasse 2",
+   "Mariahilfer Straße 37",
+   "Theresianumgasse 6",
+   "Mayerhofgasse 16"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Alte Feldapotheke": {
+  "lat": 48.208273526682,
+  "lon": 16.371555644256,
+  "addresses": [
+   "Stephansplatz 8a",
+   "Stock-im-Eisen-Platz 4",
+   "Rotenturmstraße 3",
+   "Graben 10",
+   "Rotenturmstraße 2",
+   "Rotenturmstraße 3",
+   "Stock-im-Eisen-Platz 4",
+   "Stephansplatz 2",
+   "Stephansplatz 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.209009006303,
+   16.372366374528
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Stock-im-Eisen-Platz 4"
+ },
+ "Anna Weitzmann": {
+  "lat": 48.208644444444,
+  "lon": 16.375883333333,
+  "addresses": [
+   "Wollzeile 15"
+  ],
+  "addresses_other": [
+   "Kalvarienberggasse 37",
+   "Seegasse 9",
+   "Seegasse 9",
+   "Kalvarienberggasse 37"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Apotheke zum römischen Kaiser": {
+  "lat": 48.208722222222,
+  "lon": 16.375572222222,
+  "addresses": [
+   "Wollzeile 13",
+   "Wollzeile 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20872133773,
+   16.375571050583
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Augustiner-Eremiten": {
+  "lat": 48.205191666667,
+  "lon": 16.368041666667,
+  "addresses": [
+   "Augustinerstraße 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.205190686759,
+   16.368041966208
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Benno Pointner": {
+  "lat": 48.212244444444,
+  "lon": 16.365261111111,
+  "addresses": [
+   "Freyung 6"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Braun & Co": {
+  "lat": 48.207983333333,
+  "lon": 16.370666666667,
+  "addresses": [
+   "Graben 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20808,
+   16.37075
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Buch- und Kunsthandlung, Antiquariat Halm & Goldmann": {
+  "lat": 48.203055555556,
+  "lon": 16.365041666667,
+  "addresses": [
+   "Opernring 19",
+   "Babenbergerstraße 1; 3",
+   "Opernring 19"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.203054419639,
+   16.365043022361
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Buchhandlung Richard Lányi": {
+  "lat": 48.20164222687,
+  "lon": 16.368701517241,
+  "addresses": [
+   "Kärntner Straße 44"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.201642223882,
+   16.368701501442
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Kärntner Straße 44"
+ },
+ "Burgkino": {
+  "lat": 48.203055555556,
+  "lon": 16.365041666667,
+  "addresses": [
+   "Opernring 19",
+   "Opernring 2"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.203064,
+   16.365043
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Café Central": {
+  "lat": 48.210502777778,
+  "lon": 16.365475,
+  "addresses": [
+   "Herrengasse 14"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210406,
+   16.365383
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Café Herrenhof": {
+  "lat": 48.209831811063,
+  "lon": 16.366012127514,
+  "addresses": [
+   "Herrengasse 10"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.209766,
+   16.365886
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Herrengasse 10"
+ },
+ "Café Louvre": {
+  "lat": 48.213033333333,
+  "lon": 16.367302777778,
+  "addresses": [
+   "Renngasse 9",
+   "Wipplingerstraße 27"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.213149,
+   16.367334
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Egon Wellesz": {
+  "lat": 48.213202777778,
+  "lon": 16.363547222222,
+  "addresses": [
+   "Schottenbastei 2",
+   "Schottenring 25"
+  ],
+  "addresses_other": [
+   "Reithlegasse 10",
+   "Kaasgrabengasse 12",
+   "Schottenbastei 11",
+   "Kaasgrabengasse 38"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ernestine Kraus": {
+  "lat": 48.204572222222,
+  "lon": 16.374447222222,
+  "addresses": [
+   "Maximilianstraße (1) 13",
+   "Seilerstätte 13",
+   "Walfischgasse 4",
+   "Wollzeile 19"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ethische Gemeinde": {
+  "lat": 48.202091666667,
+  "lon": 16.363363888889,
+  "addresses": [
+   "Eschenbachgasse 9",
+   "Weihburggasse 4"
+  ],
+  "addresses_other": [
+   "Zaunergasse 12",
+   "Henslerstraße 3",
+   "Marxergasse 2",
+   "Untere Viaduktgasse 53",
+   "Jaurèsgasse 13"
+  ],
+  "page_coord": [
+   48.202091666667,
+   16.363363888889
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gewerkschaft": {
+  "lat": 48.214316666667,
+  "lon": 16.366069444444,
+  "addresses": [
+   "Hohenstaufengasse 10",
+   "Laurenzerberg 2"
+  ],
+  "addresses_other": [
+   "Johann-Böhm-Platz 1"
+  ],
+  "page_coord": [
+   48.205353780271,
+   16.432459412779
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Girozentrale": {
+  "lat": 48.202463902867,
+  "lon": 16.376213752292,
+  "addresses": [
+   "Schubertring 5",
+   "Fichtegasse 10",
+   "Beethovenplatz 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.202246732274,
+   16.376672848259
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Schubertring 5"
+ },
+ "Handelsgericht": {
+  "lat": 48.207342061768,
+  "lon": 16.377082260643,
+  "addresses": [
+   "Riemergasse 7",
+   "Riemergasse 7",
+   "Herrengasse 23"
+  ],
+  "addresses_other": [
+   "Marxergasse 1a",
+   "Schmerlingplatz 10-11"
+  ],
+  "page_coord": [
+   48.207759141527,
+   16.386018263844
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Riemergasse 7"
+ },
+ "Heinrich Bauer": {
+  "lat": 48.210616666667,
+  "lon": 16.374422222222,
+  "addresses": [
+   "Rotenturmstraße 19"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Helene Lieser": {
+  "lat": 48.212722222222,
+  "lon": 16.358244444444,
+  "addresses": [
+   "Ebendorferstraße 8"
+  ],
+  "addresses_other": [
+   "Apollogasse 19"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Hello": {
+  "lat": 48.20846942138,
+  "lon": 16.369372651257,
+  "addresses": [
+   "Graben 14"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20865,
+   16.369472
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Graben 14"
+ },
+ "Hermann Bahr": {
+  "lat": null,
+  "lon": null,
+  "addresses": [
+   "Graben 29-29a"
+  ],
+  "addresses_other": [
+   "Salesianergasse 12",
+   "Porzellangasse 37",
+   "Winzerstraße 22",
+   "Am Heumarkt 9"
+  ],
+  "page_coord": null,
+  "kind": null
+ },
+ "Hofapotheke": {
+  "lat": 48.206977777778,
+  "lon": 16.367572222222,
+  "addresses": [
+   "Habsburgergasse 11 (Stallburg)",
+   "Kärntner Straße",
+   "Schauflergasse",
+   "Habsburgergasse 11 (Stallburg)"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.207327,
+   16.367328
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Hofbauer": {
+  "lat": 48.204164043911,
+  "lon": 16.372228573715,
+  "addresses": [
+   "Annagasse 12"
+  ],
+  "addresses_other": [
+   "Brigittenauer Lände 168",
+   "Vivenotgasse 30",
+   "Probusgasse 2",
+   "Favoritenstraße 43",
+   "Mittersteig 2"
+  ],
+  "page_coord": [
+   48.241842530588,
+   16.366440145402
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Annagasse 12"
+ },
+ "Hutgeschäfte Korff": {
+  "lat": 48.20555,
+  "lon": 16.378316666667,
+  "addresses": [
+   "Parkring 12"
+  ],
+  "addresses_other": [
+   "Wiedner Hauptstraße 4",
+   "Große Mohrengasse 42"
+  ],
+  "page_coord": [
+   48.205373,
+   16.378193
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ilse Elisabeth Strobl-Luckmann": {
+  "lat": 48.212513888889,
+  "lon": 16.357175,
+  "addresses": [
+   "Grillparzerstraße 7",
+   "Ebendorferstraße 6"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Industrie- und Handwerksförderungsgesellschaft m.b.H.": {
+  "lat": 48.209263888889,
+  "lon": 16.381919444444,
+  "addresses": [
+   "Biberstraße 14",
+   "Stubenring 8-10"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.209401,
+   16.381352
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Industriepalast": {
+  "lat": 48.211194444444,
+  "lon": 16.380483333333,
+  "addresses": [
+   "Franz-Josefs-Kai 7-9"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Israelitischer Frauenverein Greisinnenfürsorge": {
+  "lat": 48.212579536741,
+  "lon": 16.369238855992,
+  "addresses": [
+   "Wipplinger Straße 18"
+  ],
+  "addresses_other": [
+   "Lannerstraße 16"
+  ],
+  "page_coord": [
+   48.212579536741,
+   16.369238855992
+  ],
+  "kind": null,
+  "coord_source": "page"
+ },
+ "Josefine Winter": {
+  "lat": 48.211630555556,
+  "lon": 16.361808333333,
+  "addresses": [
+   "Oppolzergasse 6",
+   "Eßlinggasse 7"
+  ],
+  "addresses_other": [
+   "Anastasius-Grün-Gasse 54",
+   "Springergasse 27"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Kammer für Arbeiter und Angestellte für Wien": {
+  "lat": 48.212877160028,
+  "lon": 16.357758021476,
+  "addresses": [
+   "Ebendorferstraße 7"
+  ],
+  "addresses_other": [
+   "Prinz-Eugen-Straße 20-22"
+  ],
+  "page_coord": [
+   48.194204547372,
+   16.375329631605
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Ebendorferstraße 7"
+ },
+ "Kammerspiele": {
+  "lat": 48.210927777778,
+  "lon": 16.375833333333,
+  "addresses": [
+   "Rotenturmstraße 20"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.21093,
+   16.37583
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Karl Kraus": {
+  "lat": 48.202786111111,
+  "lon": 16.364563888889,
+  "addresses": [
+   "Elisabethstraße 20",
+   "Maximilianstraße (1) 13",
+   "Elisabethstraße 4",
+   "Dominikanerbastei 22/6"
+  ],
+  "addresses_other": [
+   "Lothringerstraße 6",
+   "Hetzgasse 4",
+   "Schwindgasse 3"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Knize Herrenausstatter": {
+  "lat": 48.208477777778,
+  "lon": 16.369716666667,
+  "addresses": [
+   "Graben 13",
+   "Am Hof 3",
+   "Tuchlauben 7"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.208478941109,
+   16.369716807939
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Kreuz Kino": {
+  "lat": 48.208552777778,
+  "lon": 16.376130555556,
+  "addresses": [
+   "Wollzeile 17",
+   "Wollzeile 4"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.208552,
+   16.37615
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Louise Drey": {
+  "lat": 48.204572222222,
+  "lon": 16.374447222222,
+  "addresses": [
+   "Seilerstätte 13",
+   "Walfischgasse 4",
+   "Wollzeile 19",
+   "Maximilianstraße 13",
+   "Zedlitzgasse 11",
+   "Wipplingerstraße 13"
+  ],
+  "addresses_other": [
+   "Czerningasse 4/5"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Magistratsabteilung 59 - Marktamt": {
+  "lat": 48.212107047388,
+  "lon": 16.356911752514,
+  "addresses": [
+   "Rathausstraße 14-16"
+  ],
+  "addresses_other": [
+   "Spittelauer Lände 45",
+   "Am Modenapark 1"
+  ],
+  "page_coord": [
+   48.233450971039,
+   16.360098952266
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Rathausstraße 14-16"
+ },
+ "Maria am Gestade": {
+  "lat": 48.212438888889,
+  "lon": 16.371144444444,
+  "addresses": [
+   "Salvatorgasse 12"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.212848,
+   16.370749
+  ],
+  "kind": "Katholische Kirche",
+  "coord_source": "subobject"
+ },
+ "Marianne Winterberg": {
+  "lat": null,
+  "lon": null,
+  "addresses": [
+   "Kolowratring (1) 9"
+  ],
+  "addresses_other": [
+   "Brahmsplatz 5",
+   "Mohsgasse 2"
+  ],
+  "page_coord": null,
+  "kind": null
+ },
+ "Matthias Sindelar": {
+  "lat": 48.204555555556,
+  "lon": 16.371397222222,
+  "addresses": [
+   "Annagasse 3"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Meta Rosa Steinitz": {
+  "lat": 48.209802777778,
+  "lon": 16.3712,
+  "addresses": [
+   "Bauernmarkt 3"
+  ],
+  "addresses_other": [
+   "St.-Veit-Gasse 7",
+   "Prinz-Eugen-Straße 58",
+   "Goldmarkplatz"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Nibelungengasse": {
+  "lat": 48.202020999144,
+  "lon": 16.364303818322,
+  "addresses": [],
+  "addresses_other": [],
+  "page_coord": [
+   48.202020999144,
+   16.364303818322
+  ],
+  "kind": null,
+  "coord_source": "page"
+ },
+ "Phaidon-Verlag": {
+  "lat": 48.205880555556,
+  "lon": 16.378480555556,
+  "addresses": [
+   "Parkring 10",
+   "Schulerstraße 10"
+  ],
+  "addresses_other": [
+   "Zirkusgasse 34"
+  ],
+  "page_coord": [
+   48.205881322412,
+   16.378481220261
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ronacher": {
+  "lat": 48.205211111111,
+  "lon": 16.374997222222,
+  "addresses": [
+   "Seilerstätte 9",
+   "Himmelpfortgasse 25",
+   "Schellinggasse 4"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20521,
+   16.375
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Salomon Kohn": {
+  "lat": 48.206591666667,
+  "lon": 16.373602777778,
+  "addresses": [
+   "Weihburggasse 10",
+   "Teinfaltstraße"
+  ],
+  "addresses_other": [
+   "Floßgasse 3/9"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Saturn-Verlag": {
+  "lat": 48.209791666667,
+  "lon": 16.357663888889,
+  "addresses": [
+   "Lichtenfelsgasse 1",
+   "Ebendorferstraße 3",
+   "Teinfaltstraße 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211802361749,
+   16.363339786068
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Schönlatern-Bethaus-Verein Machsike Thora": {
+  "lat": 48.209458333333,
+  "lon": 16.377344444444,
+  "addresses": [
+   "Schönlaterngasse 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.209457260031,
+   16.377345222712
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Serena Lederer": {
+  "lat": 48.208536111111,
+  "lon": 16.356836111111,
+  "addresses": [
+   "Bartensteingasse 8"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Simpl": {
+  "lat": 48.207708333333,
+  "lon": 16.378136111111,
+  "addresses": [
+   "Wollzeile 34"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.207714212439,
+   16.378146888365
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Theaterverlag Eirich": {
+  "lat": 48.201338888889,
+  "lon": 16.370052777778,
+  "addresses": [
+   "Bösendorferstraße 4"
+  ],
+  "addresses_other": [
+   "Lothringerstraße 20",
+   "Köstlergasse 5"
+  ],
+  "page_coord": [
+   48.200771836002,
+   16.377197811369
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Universal-Edition": {
+  "lat": 48.200555555556,
+  "lon": 16.372488888889,
+  "addresses": [
+   "Karlsplatz 6",
+   "Maximilianstraße (1) 11",
+   "Wipplingerstraße 32",
+   "Reichsratsstraße 9"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.200556325201,
+   16.372488211204
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Universitätsarchiv": {
+  "lat": 48.20941350398,
+  "lon": 16.378786633581,
+  "addresses": [
+   "Postgasse 9"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20941350398,
+   16.378786633581
+  ],
+  "kind": null,
+  "coord_source": "page"
+ },
+ "Urania-Apotheke": {
+  "lat": 48.210669444444,
+  "lon": 16.382288888889,
+  "addresses": [
+   "Stubenring 2"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210670005947,
+   16.382287709344
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Verein Ernst Mach": {
+  "lat": null,
+  "lon": null,
+  "addresses": [
+   "Wipplingerstraße 6"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null
+ },
+ "Verlag der Johannes-Presse": {
+  "lat": 48.207802777778,
+  "lon": 16.375852777778,
+  "addresses": [
+   "Grünangergasse 1"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.207670632392,
+   16.375853828613
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Verlagsanstalt Tyrolia": {
+  "lat": 48.208255555556,
+  "lon": 16.374186111111,
+  "addresses": [
+   "Stephansplatz 5"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.208254966148,
+   16.374187036903
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Verlagsbuchhandlung Moritz Perles": {
+  "lat": 48.207669444444,
+  "lon": 16.370927777778,
+  "addresses": [
+   "Seilergasse 4"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.207668471843,
+   16.370927299206
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Verwertungsstelle für jüdisches Umzugsgut der Geheimen Staatspolizei": {
+  "lat": 48.211169444444,
+  "lon": 16.374358333333,
+  "addresses": [
+   "Bauernmarkt 24"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211168261835,
+   16.374359403877
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Warenhaus Neumann": {
+  "lat": 48.206408333333,
+  "lon": 16.371713888889,
+  "addresses": [
+   "Kärntner Straße 19"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.206408289936,
+   16.371714071361
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Wiener Stadt- und Landesarchiv": {
+  "lat": 48.210838976866,
+  "lon": 16.357297655889,
+  "addresses": [
+   "Rathausplatz 1",
+   "Salvatorgasse 7"
+  ],
+  "addresses_other": [
+   "Guglgasse 14",
+   "Sofie-Lazarsfeld-Straße 18",
+   "Kandlgasse 30"
+  ],
+  "page_coord": [
+   48.184532795559,
+   16.421913954905
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Rathausplatz 1"
+ },
+ "Wiener Werkel": {
+  "lat": 48.206994444444,
+  "lon": 16.373036111111,
+  "addresses": [
+   "Liliengasse 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20699,
+   16.37304
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Zum Rathaus (Apotheke)": {
+  "lat": 48.209466666667,
+  "lon": 16.355777777778,
+  "addresses": [
+   "Stadiongasse 10",
+   "Rathausstraße 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.209466478834,
+   16.355777792838
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Zum blauen Igel (1)": {
+  "lat": 48.210477777778,
+  "lon": 16.371130555556,
+  "addresses": [
+   "Tuchlauben 14",
+   "Wildpretmarkt 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210476725429,
+   16.371130908357
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Zum goldenen Reichsapfel (Apotheke)": {
+  "lat": 48.207025,
+  "lon": 16.374708333333,
+  "addresses": [
+   "Singerstraße 15",
+   "Schottengasse 1/ Teinfaltstraße 2"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.206996703378,
+   16.374521381404
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Zum schwarzen Mohren (Apotheke)": {
+  "lat": 48.212252776089,
+  "lon": 16.369994456405,
+  "addresses": [
+   "Wipplingerstraße 12",
+   "Graben",
+   "Graben 11",
+   "Graben 7/ Seilergasse 4",
+   "Kärntner Straße 14",
+   "Tuchlauben 25",
+   "Hoher Markt 6",
+   "Tuchlauben 27/ Schultergasse 2 (heute Teil des Arials Hoher Markt 6)",
+   "Hoher Markt 6",
+   "Tuchlauben 27",
+   "Tuchlauben 24 (Ausweichquartier)",
+   "Tuchlauben 27",
+   "Wipplingerstraße 12"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.212252773098,
+   16.369994440605
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Wipplingerstraße 12"
+ },
+ "Zur goldenen Krone (Apotheke)": {
+  "lat": 48.205825,
+  "lon": 16.372688888889,
+  "addresses": [
+   "Himmelpfortgasse 7",
+   "Grabengasse 2",
+   "Grabengasse 5",
+   "Stephansplatz 2",
+   "Graben",
+   "Graben 29–29a",
+   "Himmelpfortgasse 17",
+   "Himmelpfortgasse 14"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Zwangsarbeiterlager Wollzeile 13": {
+  "lat": 48.208722222222,
+  "lon": 16.375572222222,
+  "addresses": [
+   "Wollzeile 13"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.208742,
+   16.375571
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Zwieback & Bruder": {
+  "lat": 48.20695,
+  "lon": 16.371786111111,
+  "addresses": [
+   "Kärntner Straße 11"
+  ],
+  "addresses_other": [
+   "Mariahilfer Straße 111",
+   "Mariahilfer Straße 108",
+   "Mariahilfer Straße 90",
+   "Mariahilfer Straße 57-59",
+   "Kärntner Straße 2"
+  ],
+  "page_coord": [
+   48.206950552208,
+   16.371787487984
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Österreichische Nationalbibliothek": {
+  "lat": 48.205533333333,
+  "lon": 16.367780555556,
+  "addresses": [
+   "Josefsplatz 1"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.205534210017,
+   16.366589540718
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Albert Niedermeyer": {
+  "lat": 48.212244444444,
+  "lon": 16.365261111111,
+  "addresses": [
+   "Freyung 6"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Dora Philippine Kallmus": {
+  "lat": 48.212936111111,
+  "lon": 16.368438888889,
+  "addresses": [
+   "Wipplingerstraße 24"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Elise Richter": {
+  "lat": 48.210613888889,
+  "lon": 16.377936111111,
+  "addresses": [
+   "Fleischmarkt 17"
+  ],
+  "addresses_other": [
+   "Florianigasse 1",
+   "Weimarer Straße 83",
+   "Seegasse 16"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ella Zirner-Zwieback": {
+  "lat": 48.202466666667,
+  "lon": 16.370686111111,
+  "addresses": [
+   "Kärntner Ring 3",
+   "Kärntner Straße 11"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Elsa Bienenfeld": {
+  "lat": 48.210840353484,
+  "lon": 16.380191569452,
+  "addresses": [
+   "Dominikanerbastei (Verkehrsfläche) 22"
+  ],
+  "addresses_other": [
+   "Blumauergasse 6"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "Adresse:Dominikanerbastei (Verkehrsfläche) 22"
+ },
+ "Fengshan He": {
+  "lat": 48.202463888889,
+  "lon": 16.376213888889,
+  "addresses": [
+   "Beethovenplatz 3",
+   "Johannesgasse 22"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Friedrich Tintner": {
+  "lat": 48.215472222222,
+  "lon": 16.368063888889,
+  "addresses": [
+   "Neutorgasse 15"
+  ],
+  "addresses_other": [
+   "Malzgasse 16"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gedenkstätte für die Opfer der Gestapo Wien": {
+  "lat": 48.213286111111,
+  "lon": 16.374288888889,
+  "addresses": [
+   "Salztorgasse 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.213635,
+   16.373642
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gedenkstätte für die Opfer des österreichischen Freiheitskampfes": {
+  "lat": 48.213286111111,
+  "lon": 16.374288888889,
+  "addresses": [
+   "Salztorgasse 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.213635,
+   16.373642
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gedenktafel Familie Lederer, Klimt und Schiele": {
+  "lat": 48.208536111111,
+  "lon": 16.356836111111,
+  "addresses": [
+   "Bartensteingasse 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.208508,
+   16.356737
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Ilse Arlt": {
+  "lat": 48.205416666667,
+  "lon": 16.358097222222,
+  "addresses": [
+   "Bellariastraße 12"
+  ],
+  "addresses_other": [
+   "Hauptstraße (19, Pötzleinsdorf) 52",
+   "Albertgasse 4",
+   "Albertgasse 38"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Kunsthistorisches Museum": {
+  "lat": 48.204222222222,
+  "lon": 16.362580555556,
+  "addresses": [
+   "Burgring 5"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.20415066129,
+   16.362579555724
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Kuppitsch": {
+  "lat": 48.213202777778,
+  "lon": 16.363547222222,
+  "addresses": [
+   "Schottengasse 4",
+   "Franziskanerplatz 1",
+   "Weihburggasse 17",
+   "Schottenring 8",
+   "Schottenpassage",
+   "Singerstraße 3",
+   "Augustinerstraße 12"
+  ],
+  "addresses_other": [
+   "Alser Straße 4",
+   "Frankhplatz 12"
+  ],
+  "page_coord": [
+   48.213202375847,
+   16.363547477134
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Lessingdenkmal": {
+  "lat": 48.211391666667,
+  "lon": 16.370272222222,
+  "addresses": [
+   "Franz-Josefs-Kai",
+   "Judenplatz"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211523,
+   16.369842
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Lilli Wolff": {
+  "lat": 48.204286111111,
+  "lon": 16.371830555556,
+  "addresses": [
+   "Annagasse 8"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Nationalsozialistische Volkswohlfahrt": {
+  "lat": 48.21118482262,
+  "lon": 16.366824106814,
+  "addresses": [
+   "Am Hof 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211196,
+   16.367168
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Am Hof 6"
+ },
+ "Neue Burg": {
+  "lat": 48.206802777778,
+  "lon": 16.362561111111,
+  "addresses": [
+   "Heldenplatz"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.205393,
+   16.36494
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Oskar Kokoschka": {
+  "lat": 48.20865,
+  "lon": 16.381491666667,
+  "addresses": [
+   "Stubenring 16"
+  ],
+  "addresses_other": [
+   "Hardtgasse 27",
+   "Liebhartstalstraße 29",
+   "Friedmanngasse 6",
+   "Breitenfelder Gasse 18",
+   "Hernalser Gürtel 20"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Oskar Samek": {
+  "lat": 48.214858333333,
+  "lon": 16.365258333333,
+  "addresses": [
+   "Schottenring 14"
+  ],
+  "addresses_other": [
+   "Reindorfgasse 18"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Rudolf Kaftan": {
+  "lat": 48.210861111111,
+  "lon": 16.369330555556,
+  "addresses": [
+   "Schulhof 2"
+  ],
+  "addresses_other": [
+   "Billrothstraße 69"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Valentin Rosenfeld": {
+  "lat": 48.212538888889,
+  "lon": 16.368741666667,
+  "addresses": [
+   "Wipplingerstraße 21"
+  ],
+  "addresses_other": [
+   "Wattmanngasse 11"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Wienbibliothek im Rathaus": {
+  "lat": 48.210838976866,
+  "lon": 16.357297655889,
+  "addresses": [
+   "Rathausplatz 1",
+   "Wipplingerstraße 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210838930705,
+   16.357297654873
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Rathausplatz 1"
+ },
+ "Bertha Löwi": {
+  "lat": 48.209902777778,
+  "lon": 16.355916666667,
+  "addresses": [
+   "Rathausstraße 7"
+  ],
+  "addresses_other": [
+   "Altmüttergasse 4"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Emil Geyer": {
+  "lat": 48.204063888889,
+  "lon": 16.371263888889,
+  "addresses": [
+   "Krugerstraße 5/8"
+  ],
+  "addresses_other": [
+   "Siebensterngasse 31/8",
+   "Hörlgasse 12/4",
+   "Kirchengasse 25/6"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Gedenktafel für jüdische HausbewohnerInnen - Sammelwohnungen Neutorgasse 15": {
+  "lat": 48.215472222222,
+  "lon": 16.368063888889,
+  "addresses": [
+   "Neutorgasse 15"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.215489,
+   16.368136
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Stein der Erinnerung - Sammelwohnung Werdertorgasse 17": {
+  "lat": 48.215647222222,
+  "lon": 16.371219444444,
+  "addresses": [
+   "Werdertorgasse 17"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.21566,
+   16.37122
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Stein der Erinnerung - Sammelwohnungen Heinrichsgasse 3": {
+  "lat": 48.215077777778,
+  "lon": 16.371927777778,
+  "addresses": [
+   "Heinrichsgasse 3"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.215067,
+   16.371973
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Stein der Erinnerung - Sammelwohnungen Passauerplatz 6": {
+  "lat": 48.213392976692,
+  "lon": 16.370462393429,
+  "addresses": [
+   "Passauer Platz 6"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.213041,
+   16.370383
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Passauer Platz 6"
+ },
+ "Stein des Gedenkens – Familien in Sammelwohnungen": {
+  "lat": 48.212133333333,
+  "lon": 16.369663888889,
+  "addresses": [
+   "Wipplingerstraße 13"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.212201,
+   16.369742
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Steine der Erinnerung - BewohnerInnen Sammelwohnungen Annagasse 3a": {
+  "lat": 48.204471,
+  "lon": 16.37154,
+  "addresses": [
+   "Annagasse 3a"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.204471,
+   16.37154
+  ],
+  "kind": null,
+  "coord_source": "page"
+ },
+ "Steine der Erinnerung - BewohnerInnen Sammelwohnungen Rotenturmstraße 21": {
+  "lat": 48.210916666667,
+  "lon": 16.3749,
+  "addresses": [
+   "Rotenturmstraße 21"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210877,
+   16.374943
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Steine des Gedenkens für Melanie Lehmann und Henriette Lainzer-Lehmann": {
+  "lat": 48.209955555556,
+  "lon": 16.356416666667,
+  "addresses": [
+   "Lichtenfelsgasse 7"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210035,
+   16.356491
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Adam Johann Braun": {
+  "lat": 48.206513888889,
+  "lon": 16.372633333333,
+  "addresses": [
+   "Rauhensteingasse 6"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Adolf Loos": {
+  "lat": 48.201527777778,
+  "lon": 16.370161111111,
+  "addresses": [
+   "Giselastraße (1) 3",
+   "Bösendorferstraße 3"
+  ],
+  "addresses_other": [
+   "Margaretenstraße 7"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Am Hof 3-4": {
+  "lat": 48.210616666667,
+  "lon": 16.367305555556,
+  "addresses": [
+   "Am Hof 3-4",
+   "Naglergasse 22-24",
+   "Irisgasse 2"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.210615782206,
+   16.367305727301
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Anna Albert": {
+  "lat": 48.208163888889,
+  "lon": 16.368447222222,
+  "addresses": [
+   "Habsburgergasse 5",
+   "Stallburggasse 2"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Anton Bergmiller": {
+  "lat": 48.202497222222,
+  "lon": 16.367533333333,
+  "addresses": [
+   "Opernring 7"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Anton Einsle (Buch- und Kunsthändler)": {
+  "lat": null,
+  "lon": null,
+  "addresses": [
+   "Sonnenfelsgasse 21"
+  ],
+  "addresses_other": [
+   "Billrothstraße 78"
+  ],
+  "page_coord": null,
+  "kind": null
+ },
+ "Böhmische Hofkanzlei": {
+  "lat": 48.2116,
+  "lon": 16.370111111111,
+  "addresses": [
+   "Wipplingerstraße 7",
+   "Judenplatz 11",
+   "Fütterergasse 2",
+   "Jordangasse 2"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211599204564,
+   16.370111894139
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Bürgerspitalfonds": {
+  "lat": 48.205430555556,
+  "lon": 16.3688,
+  "addresses": [
+   "Lobkowitzplatz"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.205501,
+   16.368888
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Café Landtmann": {
+  "lat": 48.211630555556,
+  "lon": 16.361808333333,
+  "addresses": [
+   "Universitätsring 4",
+   "Löwelstraße 22",
+   "Oppolzergasse 6",
+   "Franzensring (1) 14"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.211545,
+   16.361579
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Creditanstalt-Bankverein": {
+  "lat": 48.213644444444,
+  "lon": 16.363088888889,
+  "addresses": [
+   "Schottengasse 6-8",
+   "Am Hof 6",
+   "Renngasse 1",
+   "Freyung 8"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.213644413618,
+   16.363089287712
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Erste Bank der oesterreichischen Sparkassen AG": {
+  "lat": 48.20943820022,
+  "lon": 16.368957660692,
+  "addresses": [
+   "Graben 21",
+   "Singerstraße 7"
+  ],
+  "addresses_other": [
+   "Am Belvedere 1",
+   "Alexander-Poch-Platz 6"
+  ],
+  "page_coord": [
+   48.186613741061,
+   16.380898902301
+  ],
+  "kind": null,
+  "coord_source": "Adresse:Graben 21"
+ },
+ "Erste Österreichische Allgemeine Unfallversicherungs-Gesellschaft": {
+  "lat": 48.209102777778,
+  "lon": 16.371019444444,
+  "addresses": [
+   "Bauernmarkt 2",
+   "Bauernmarkt 3",
+   "Tuchlauben 10",
+   "Landskrongasse 1"
+  ],
+  "addresses_other": [
+   "Kratochwjlestraße 4"
+  ],
+  "page_coord": [
+   48.235737037117,
+   16.42142458359
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Generali Versicherung": {
+  "lat": 48.210036111111,
+  "lon": 16.374811111111,
+  "addresses": [
+   "Lugeck 1",
+   "Bauernmarkt 2",
+   "Landskrongasse 1"
+  ],
+  "addresses_other": [
+   "Kratochwjlestraße 4"
+  ],
+  "page_coord": [
+   48.235737037117,
+   16.42142458359
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Georg Pfendler der Ältere": {
+  "lat": 48.205338888889,
+  "lon": 16.373788888889,
+  "addresses": [
+   "Himmelpfortgasse 12"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Grabenhof": {
+  "lat": 48.208544444444,
+  "lon": 16.368855555556,
+  "addresses": [
+   "Graben 14-15",
+   "Habsburgergasse 1",
+   "Bräunerstraße 2"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Interunfall Versicherung": {
+  "lat": 48.20465,
+  "lon": 16.369475,
+  "addresses": [
+   "Tegetthoffstraße 7",
+   "Weihburggasse 4"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.204649160638,
+   16.369475251143
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Johann Gabriel Seidl": {
+  "lat": 48.203838888889,
+  "lon": 16.371297222222,
+  "addresses": [
+   "Krugerstraße 8"
+  ],
+  "addresses_other": [
+   "Alser Straße 18",
+   "Laudongasse 12",
+   "Lange Gasse 69"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Johannesgasse 7": {
+  "lat": 48.204944444444,
+  "lon": 16.372658333333,
+  "addresses": [
+   "Johannesgasse 7"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ },
+ "Josef Matzenauer": {
+  "lat": 48.207325,
+  "lon": 16.370319444444,
+  "addresses": [
+   "Spiegelgasse 9"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Karl Schaumburg": {
+  "lat": 48.208872222222,
+  "lon": 16.37525,
+  "addresses": [
+   "Wollzeile 11"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Leopold von Blumfeld": {
+  "lat": 48.208019444444,
+  "lon": 16.374894444444,
+  "addresses": [
+   "Domgasse 4"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Lucca Chmel": {
+  "lat": 48.208827777778,
+  "lon": 16.381669444444,
+  "addresses": [
+   "Stubenring 14"
+  ],
+  "addresses_other": [
+   "Ungargasse 5",
+   "Salmgasse 11",
+   "Loquaiplatz 13",
+   "Mariahilfer Straße 55"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Magistratsabteilung 54 - Zentraler Einkauf und Logistik": {
+  "lat": 48.212108333333,
+  "lon": 16.356911111111,
+  "addresses": [
+   "Ebendorferstraße 1"
+  ],
+  "addresses_other": [
+   "Simone-de-Beauvoir-Platz 6",
+   "Hasnerstraße 123",
+   "Am Modenapark 1-2"
+  ],
+  "page_coord": [
+   48.224561037221,
+   16.506078204925
+  ],
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Otto Fuchs (Jurist)": {
+  "lat": null,
+  "lon": null,
+  "addresses": [
+   "Giselastraße (1) 2"
+  ],
+  "addresses_other": [],
+  "page_coord": null,
+  "kind": null
+ },
+ "Peter Altenberg": {
+  "lat": 48.207894444444,
+  "lon": 16.370058333333,
+  "addresses": [
+   "Dorotheergasse 3"
+  ],
+  "addresses_other": [
+   "Franzensbrückenstraße 3",
+   "Alser Straße 4"
+  ],
+  "page_coord": null,
+  "kind": null,
+  "coord_source": "subobject"
+ },
+ "Hofburg": {
+  "lat": 48.207336111111,
+  "lon": 16.366802777778,
+  "addresses": [
+   "Michaelerplatz 1",
+   "Reitschulgasse 1",
+   "Josefsplatz 1-4",
+   "Reitschulgasse 9",
+   "Heldenplatz",
+   "Ballhausplatz 1",
+   "Schauflergasse 1-5",
+   "In der Burg"
+  ],
+  "addresses_other": [],
+  "page_coord": [
+   48.206526,
+   16.365232
+  ],
+  "kind": "Gebäude",
+  "coord_source": "subobject"
+ }
+}

@@ -1,0 +1,6 @@
+# Scan caches: rebuilt by `make all`, far too big for git.
+data/all_titles.json      # 1.5 MB — every wiki page title
+data/fetch_state.json     # 1.5 MB — resume checkpoint
+data/wikitext.json        #  21 MB — the 5,450 scanned Bezirk-1 pages
+__pycache__/
+.DS_Store
