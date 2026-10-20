@@ -21,10 +21,13 @@ data/coordinates.json: data/classified.json
 docs/data/map_data.json: data/classified.json data/coordinates.json data/memento_bezirk1.json
 	$(PY) scripts/06_build_site.py
 
+verify: docs/data/map_data.json
+	$(PY) scripts/07_verify.py
+
 serve: docs/data/map_data.json
 	cd docs && $(PY) -m http.server 8111
 
 clean:
 	rm -rf docs/data data/classified.json data/candidates.json data/coordinates.json
 
-.PHONY: all serve clean
+.PHONY: all serve clean verify

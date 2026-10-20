@@ -1,0 +1,9 @@
+VERIFICATION — every quote re-checked against MediaWiki's own parser
+======================================================================
+entries checked      : 91  (80 properties + 11 perpetrators)
+pages that exist     : 91/91
+quotes verified      : 153/153
+coordinates in bbox  : 91/91
+address/title match  : 0 mismatches
+
+ALL CHECKS PASSED

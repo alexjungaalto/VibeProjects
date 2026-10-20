@@ -27,16 +27,27 @@ Every entry quotes the sentence that supports it and links to its source.
 **This is a lower bound, and a distant one.** There is no open register of
 "aryanized" property. The authoritative sources are archival:
 
-- **Vermögensanmeldungen 1938** — the compulsory asset declarations (~47,800
-  files, Österreichisches Staatsarchiv). Online only as per-person lookup
-  behind registration at [findbuch.at](https://www.findbuch.at/property-notices).
+- **Vermögensanmeldungen 1938** — the asset declarations compelled by the
+  ordinance of **26 April 1938** from anyone holding over 5,000 Reichsmark
+  (Österreichisches Staatsarchiv). The series is *numbered to file no. 47,800
+  with gaps, and runs on to 66,600* — not a clean count of 47,800 declarations.
+  Online only as per-person lookup behind registration at
+  [findbuch.at](https://www.findbuch.at/property-notices).
 - **Melinz/Hödl**, [„Jüdisches" Liegenschaftseigentum in Wien](https://hiko.univie.ac.at/PDF/13.pdf)
-  (Historikerkommission) — reconstructed **670 properties** from the land
-  registry across 8 districts, **53 of them in the 1st**. The addresses are not
-  in the study; the database sits in the ÖStA.
+  (Historikerkommission) — their *Ersterhebung* identified 694 properties by
+  Grundbuch Einlagezahl across 8 districts, of which **670 had Jewish owners**
+  and **53 were in the 1st district** (their Tabelle 5). Read this precisely:
+  it is a **base sample** of property declared as *private* ownership as at
+  26 April 1938 — the authors extrapolate from it — not a complete register of
+  Jewish-owned property in the district. The addresses are not in the study;
+  the database sits in the ÖStA.
 
-This map finds fewer than those 53 houses. It shows what is *publicly
-documented*, not what happened.
+This map finds fewer than those 53 houses — and those 53 are themselves only a
+sample of privately declared holdings. It shows what is *publicly documented*,
+not what happened.
+
+Every quote is checked back against MediaWiki's own parser by
+`scripts/07_verify.py`; see `data/verification_report.txt`.
 
 The **Person** layer is the weakest: the pin is the person's 1st-district
 address, while the property taken from them may have been elsewhere. The quote

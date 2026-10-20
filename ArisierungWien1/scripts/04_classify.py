@@ -45,6 +45,34 @@ COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
 TAG_RE = re.compile(r"<[^>]+>")
 HEADING_RE = re.compile(r"^=+.*?=+\s*$", re.M)
 FILE_RE = re.compile(r"\[\[(?:Datei|File|Bild):[^\]]*\]\]", re.I)
+FILE_OPEN = re.compile(r"\[\[(?:Datei|File|Bild):", re.I)
+
+
+def strip_files(text):
+    """Remove [[Datei:...]] blocks, including captions containing links.
+
+    A non-greedy [^\]]* stops at the first "]", so a caption like
+      [[Datei:x.jpg|thumb|Vermoegensentzug von "[[Zwieback & Bruder]]": ...]]
+    was left half-standing and its caption became a quotable "sentence" - which
+    put a fact about Zwieback & Bruder onto the Handelsgericht's page. Captions
+    are not body prose and are dropped whole.
+    """
+    out, i = [], 0
+    while True:
+        m = FILE_OPEN.search(text, i)
+        if not m:
+            out.append(text[i:])
+            return "".join(out)
+        out.append(text[i:m.start()])
+        depth, j = 1, m.end()
+        while j < len(text) and depth:
+            if text.startswith("[[", j):
+                depth += 1; j += 2
+            elif text.startswith("]]", j):
+                depth -= 1; j += 2
+            else:
+                j += 1
+        i = j
 
 
 def plain(text):
@@ -52,7 +80,7 @@ def plain(text):
     text = REF_RE.sub(" ", text)
     text = APPARATUS.sub(" ", text)          # drop Literatur/Weblinks/...
     text = re.sub(r"<gallery[^>]*>.*?</gallery>", " ", text, flags=re.S | re.I)
-    text = FILE_RE.sub(" ", text)
+    text = strip_files(text)
     # image captions survive as "...|thumb|Text]]" fragments and read as
     # mangled sentences in a popup
     text = re.sub(r"^[^\n]*\|(thumb|mini|rahmenlos|\d+px)\|[^\n]*$", " ",

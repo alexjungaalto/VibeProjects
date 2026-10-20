@@ -1,13 +1,13 @@
 scanned:      5450 Bezirk-1 pages
-properties:   82
+properties:   81
 perpetrators: 11
 
-  arisiert         52
+  arisiert         51
   enteignet        12
   sammelwohnung    10
   reich            8
 
-  betrieb          40
+  betrieb          39
   person           22
   gebaeude         10
   gedenkzeichen    10
