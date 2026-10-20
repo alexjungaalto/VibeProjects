@@ -54,10 +54,11 @@ all 63,463 pages of the Wien Geschichte Wiki and classifying the 5,450
 register of "aryanized" property exists.
 
 **Stack:** MediaWiki + Semantic MediaWiki APIs · Memento Wien (DÖW) · Leaflet · basemap.at
+&nbsp;·&nbsp; **[🗺️ Open the live map →](https://alexjungaalto.github.io/VibeProjects/ArisierungWien1/docs/)**
 &nbsp;·&nbsp; [Read more →](ArisierungWien1/README.md)
 
 <p align="center">
-  <img src="ArisierungWien1/preview.jpg" alt="Map of documented Nazi property dispossession in Vienna's 1st district" width="640">
+  <a href="https://alexjungaalto.github.io/VibeProjects/ArisierungWien1/docs/"><img src="ArisierungWien1/preview.jpg" alt="Map of documented Nazi property dispossession in Vienna's 1st district" width="640"></a>
 </p>
 
 ---

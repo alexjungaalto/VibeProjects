@@ -3,6 +3,8 @@
 A map of documented Nazi-era property dispossession in Vienna's Innere Stadt,
 built only from sources that can be cited line by line.
 
+**▶ Live map: https://alexjungaalto.github.io/VibeProjects/ArisierungWien1/docs/**
+
     make all        # full pipeline (first run ~30 min, mostly the wiki scan)
     make serve      # http://localhost:8111
     ./deploy.sh     # publish to dictionaryofml.org/geraubte-haeuser
